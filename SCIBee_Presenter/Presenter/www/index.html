@@ -1,0 +1,686 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SCIBee Presenter</title>
+
+    <style>
+        /* ---------- Global ---------- */
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 18px;
+            line-height: 1.5;
+
+            margin: 0;
+            padding: 16px;
+
+            background: #f5f5f5;
+            color: #000;
+        }
+
+        /* ---------- Header ---------- */
+
+        header {
+            display: flex;
+            align-items: center;
+        }
+
+        header img {
+            height: 50px;
+            margin-top: 6px;
+            margin-right: 12px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 30px;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+
+        /* ---------- Layout ---------- */
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .rows {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 320px;
+        }
+
+        .intro {
+            text-align: center;
+        }
+
+        .status {
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .status.visible {
+            margin: 8px 0;
+        }
+
+        .status.error {
+            color: crimson;
+        }
+
+        /* ---------- Buttons ---------- */
+
+        button {
+            width: 180px;
+            min-height: 44px;
+
+            padding: 12px;
+            margin: 6px 12px;
+
+            font-family: inherit;
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 1.2;
+
+            border: none;
+            border-radius: 6px;
+
+            background: #ffc73e;
+            color: #000;
+
+            cursor: pointer;
+            flex-shrink: 0;
+
+            appearance: none;
+            -webkit-appearance: none;
+
+            transition: filter 0.15s ease;
+        }
+
+        button:active {
+            filter: brightness(0.9);
+        }
+
+        button:disabled {
+            cursor: wait;
+            opacity: 0.6;
+        }
+
+        /* ---------- Forms ---------- */
+
+        input:not([type="checkbox"]),
+        select,
+        textarea {
+            width: 100%;
+
+            padding: 12px;
+            margin: 6px 0 14px;
+
+            font-family: inherit;
+            font-size: 18px;
+            line-height: 1.4;
+
+            color: #000;
+            background: #f5f5f5;
+
+            border: 1px solid #ddd;
+            border-radius: 6px;
+
+            outline: none;
+            box-shadow: none;
+
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            background: #fff;
+            border-color: #3b82f6;
+        }
+
+        .beehive-selection {
+            display: flex;
+            gap: 12px;
+        }
+
+        .beehive-selection > div {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .beehive-selection label {
+            display: block;
+        }
+
+        /* ---------- Table ---------- */
+
+        .summary-wrapper {
+            width: 100%;
+        }
+
+        .data-table {
+            width: 100%;
+            max-width: 480px;
+            margin: 20px auto 0;
+
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        .data-table th {
+            border: 1px solid #000;
+            padding: 6px;
+
+            text-align: center;
+
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .data-table td {
+            border: 1px solid #000;
+            padding: 6px;
+
+            text-align: center;
+            overflow-wrap: anywhere;
+
+            font-size: 16px;
+        }
+
+        .data-table .summary-details {
+            height: 300px;
+            text-align: left;
+            vertical-align: top;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+        }
+
+        .age-warning {
+            color: #b45309;
+        }
+
+        .age-critical {
+            color: crimson;
+            font-weight: bold;
+        }
+
+        /* ---------- Modal ---------- */
+
+        .modal {
+            display: none;
+
+            position: fixed;
+            inset: 0;
+
+            z-index: 10;
+
+            background: rgba(0, 0, 0, 0.4);
+
+            overflow-y: auto;
+
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal button {
+            width: 120px;
+        }
+
+        .modal-content {
+            width: 90%;
+            max-width: 480px;
+
+            margin: auto;
+            padding: 20px;
+
+            background: #fff;
+            border-radius: 10px;
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+            font-size: 24px;
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ---------- Mobile ---------- */
+
+        @media (max-width: 600px) {
+            body {
+                padding: 12px;
+            }
+
+            header img {
+                height: 36px;
+            }
+
+            header h1 {
+                font-size: 24px;
+            }
+
+            button {
+                padding: 12px;
+                margin: 6px 12px;
+            }
+
+            .modal-content {
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <header>
+            <a href="/">
+                <img src="logo.png" alt="SCIBee Logo" />
+            </a>
+            <h1>SCIBee Presenter</h1>
+        </header>
+
+        <p class="intro">
+            Select a beehive to retrieve its latest hive data evaluation.
+        </p>
+
+        <div class="rows">
+            <button type="button" id="openModalButton">
+                Get Summary
+            </button>
+        </div>
+
+        <div
+            id="pageStatus"
+            class="status"
+            role="status"
+            aria-live="polite"
+        ></div>
+
+        <div class="summary-wrapper">
+            <table class="data-table">
+                <tbody>
+                    <tr>
+                        <th scope="row" class="label-cell">Name:</th>
+                        <td id="summaryName" class="value-cell">—</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row" class="label-cell">Time:</th>
+                        <td id="summaryTime" class="value-cell">—</td>
+                    </tr>
+
+                    <tr>
+                        <td
+                            id="summaryDetails"
+                            colspan="2"
+                            class="summary-details"
+                        ></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ---------- Beehive Selection Modal ---------- -->
+
+    <div
+        id="summaryModal"
+        class="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalTitle"
+    >
+        <div class="modal-content">
+            <h2 id="modalTitle">A1 - Beehive summary</h2>
+
+            <p class="description">
+                Choose the beehive group and number.
+            </p>
+
+            <form id="beehiveForm">
+                <div class="beehive-selection">
+                    <div>
+                        <label for="beehiveGroup">Beehive group:</label>
+                        <select
+                            id="beehiveGroup"
+                            name="beehiveGroup"
+                            required
+                        >
+                            <option value="A">Group A</option>
+                            <option value="B">Group B</option>
+                            <option value="C">Group C</option>
+                            <option value="D">Group D</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="beehiveNumber">Beehive number:</label>
+                        <select
+                            id="beehiveNumber"
+                            name="beehiveNumber"
+                            required
+                        >
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div
+                    id="modalStatus"
+                    class="status"
+                    role="status"
+                    aria-live="polite"
+                ></div>
+
+                <div class="modal-actions">
+                    <button type="button" id="cancelButton">
+                        Cancel
+                    </button>
+
+                    <button type="submit" id="getSummaryButton">
+                        Get
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        /* ---------- Elements ---------- */
+
+        const modal = document.getElementById("summaryModal");
+        const modalTitle = document.getElementById("modalTitle");
+        const form = document.getElementById("beehiveForm");
+
+        const openModalButton = document.getElementById("openModalButton");
+        const cancelButton = document.getElementById("cancelButton");
+        const getSummaryButton = document.getElementById("getSummaryButton");
+
+        const beehiveGroup = document.getElementById("beehiveGroup");
+        const beehiveNumber = document.getElementById("beehiveNumber");
+
+        const pageStatus = document.getElementById("pageStatus");
+        const modalStatus = document.getElementById("modalStatus");
+
+        const nameCell = document.getElementById("summaryName");
+        const timeCell = document.getElementById("summaryTime");
+        const detailsCell = document.getElementById("summaryDetails");
+
+        /* ---------- State ---------- */
+
+        let requestInProgress = false;
+        let lastEvaluationTimestamp = null;
+
+        /* ---------- Status ---------- */
+
+        function setStatus(element, message, type = "") {
+            element.textContent = message;
+            element.classList.toggle("visible", Boolean(message));
+            element.classList.toggle("error", type === "error");
+        }
+
+        /* ---------- Modal ---------- */
+
+        function updateModalTitle() {
+            const beehiveName =
+                `${beehiveGroup.value}${beehiveNumber.value}`;
+
+            modalTitle.textContent =
+                `${beehiveName} - Beehive summary`;
+        }
+
+        function openModal() {
+            if (requestInProgress) return;
+
+            setStatus(modalStatus, "");
+            updateModalTitle();
+
+            modal.style.display = "flex";
+            beehiveGroup.focus();
+        }
+
+        function closeModal() {
+            if (requestInProgress) return;
+
+            modal.style.display = "none";
+            openModalButton.focus();
+        }
+
+        beehiveGroup.addEventListener("change", updateModalTitle);
+        beehiveNumber.addEventListener("change", updateModalTitle);
+
+        openModalButton.addEventListener("click", openModal);
+        cancelButton.addEventListener("click", closeModal);
+
+        modal.addEventListener("click", (event) => {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (
+                event.key === "Escape" &&
+                modal.style.display === "flex"
+            ) {
+                closeModal();
+            }
+        });
+
+        updateModalTitle();
+
+        /* ---------- Table Rendering ---------- */
+
+        function clearSummary() {
+            nameCell.textContent = "—";
+            timeCell.textContent = "—";
+
+            timeCell.classList.remove("age-warning", "age-critical");
+
+            detailsCell.textContent = "";
+            lastEvaluationTimestamp = null;
+        }
+
+        function updateEvaluationAge() {
+            timeCell.classList.remove("age-warning", "age-critical");
+
+            if (lastEvaluationTimestamp === null) {
+                timeCell.textContent = "—";
+                return;
+            }
+
+            const elapsed = Date.now() - lastEvaluationTimestamp;
+
+            if (!Number.isFinite(elapsed) || elapsed < 0) {
+                timeCell.textContent = "—";
+                return;
+            }
+
+            const daysAgo = Math.floor(elapsed / 86400000);
+
+            timeCell.textContent =
+                `${daysAgo} day${daysAgo === 1 ? "" : "s"} ago`;
+
+            if (daysAgo > 7) {
+                timeCell.classList.add("age-critical");
+            } else if (daysAgo >= 3) {
+                timeCell.classList.add("age-warning");
+            }
+        }
+
+        function formatSummary(summary) {
+            if (summary === null || summary === undefined) {
+                return "";
+            }
+
+            if (typeof summary === "string") {
+                try {
+                    const parsed = JSON.parse(summary);
+
+                    if (parsed !== null && typeof parsed === "object") {
+                        return JSON.stringify(parsed, null, 2);
+                    }
+
+                    return String(parsed ?? "");
+                } catch {
+                    return summary;
+                }
+            }
+
+            if (typeof summary === "object") {
+                return JSON.stringify(summary, null, 2);
+            }
+
+            return String(summary);
+        }
+
+        function renderSummary(data) {
+            clearSummary();
+
+            if (!data) {
+                setStatus(
+                    pageStatus,
+                    "No evaluation was found for the selected beehive."
+                );
+                return;
+            }
+
+            nameCell.textContent = data.name ?? "—";
+
+            const timestamp = data.time
+                ? new Date(data.time).getTime()
+                : NaN;
+
+            if (Number.isFinite(timestamp)) {
+                lastEvaluationTimestamp = timestamp;
+                updateEvaluationAge();
+            }
+
+            detailsCell.textContent = formatSummary(data.summary);
+
+            setStatus(
+                pageStatus,
+                "Latest evaluation loaded successfully."
+            );
+        }
+
+        /* ---------- API ---------- */
+
+        function fetchSummary(beehiveName) {
+            if (requestInProgress) return;
+
+            requestInProgress = true;
+
+            getSummaryButton.disabled = true;
+            cancelButton.disabled = true;
+            openModalButton.disabled = true;
+
+            setStatus(
+                modalStatus,
+                `Loading summary for ${beehiveName}...`
+            );
+
+            setStatus(
+                pageStatus,
+                "Loading the latest evaluation..."
+            );
+
+            const url =
+                `/summary?beehive_name=${encodeURIComponent(beehiveName)}`;
+
+            fetch(url, {
+                method: "GET",
+                headers: {
+                    "Accept": "application/json"
+                },
+                cache: "no-store"
+            })
+                .then((res) => {
+                    if (!res.ok) {
+                        throw new Error(`HTTP ${res.status}`);
+                    }
+
+                    return res.json();
+                })
+                .then((data) => {
+                    renderSummary(data);
+                    modal.style.display = "none";
+                })
+                .catch((error) => {
+                    const message = error instanceof Error
+                        ? error.message
+                        : "Unexpected error.";
+
+                    setStatus(
+                        modalStatus,
+                        `Unable to load summary: ${message}`,
+                        "error"
+                    );
+
+                    setStatus(
+                        pageStatus,
+                        "Could not retrieve the latest evaluation.",
+                        "error"
+                    );
+                })
+                .finally(() => {
+                    requestInProgress = false;
+
+                    getSummaryButton.disabled = false;
+                    cancelButton.disabled = false;
+                    openModalButton.disabled = false;
+
+                    if (modal.style.display !== "flex") {
+                        openModalButton.focus();
+                    }
+                });
+        }
+
+        /* ---------- Form Submission ---------- */
+
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const beehiveName =
+                `${beehiveGroup.value}${beehiveNumber.value}`;
+
+            fetchSummary(beehiveName);
+        });
+
+        /* ---------- Keep Evaluation Age Current ---------- */
+
+        setInterval(updateEvaluationAge, 60000);
+    </script>
+</body>
+</html>

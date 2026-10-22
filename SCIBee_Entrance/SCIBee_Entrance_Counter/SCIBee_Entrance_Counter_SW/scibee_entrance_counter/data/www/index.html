@@ -1,0 +1,836 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bee Entrance Counter</title>
+
+    <style>
+      /* ---------- Global ---------- */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+      }
+
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 18px;
+        line-height: 1.5;
+
+        margin: 0;
+        padding: 16px;
+
+        background: #f5f5f5;
+        color: #000;
+      }
+
+      /* ---------- Header ---------- */
+
+      header {
+        display: flex;
+        align-items: center;
+      }
+
+      header img {
+        height: 50px;
+        margin-top: 6px;
+        margin-right: 12px;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 30px;
+        font-weight: bold;
+        line-height: 1.2;
+      }
+
+      /* ---------- Layout ---------- */
+
+      .container {
+        max-width: 900px;
+        margin: auto;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .status-bar {
+        font-size: 16px;
+        margin-bottom: 12px;
+      }
+
+      .status-bar span {
+        display: inline-block;
+        min-width: 120px;
+        font-weight: bold;
+      }
+
+      .rows {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 320px;
+      }
+      /* ---------- Buttons ---------- */
+
+      button {
+        width: 180px;
+        min-height: 44px;
+
+        padding: 12px;
+        margin: 6px 12px 6px 12px;
+
+        font-family: inherit;
+        font-size: 18px;
+        font-weight: bold;
+        line-height: 1.2;
+
+        border: none;
+        border-radius: 6px;
+
+        background: #ffc73e;
+        color: #000;
+
+        cursor: pointer;
+        flex-shrink: 0;
+
+        appearance: none;
+        -webkit-appearance: none;
+
+        transition: filter 0.15s ease;
+      }
+
+      button:active {
+        filter: brightness(0.9);
+      }
+
+      #fileList-container button {
+        width: 260px;
+        margin: 5px;
+      }
+
+      /* ---------- Forms ---------- */
+
+      input:not([type="checkbox"]),
+      select,
+      textarea {
+        width: 100%;
+
+        padding: 12px;
+
+        margin: 6px 0 14px;
+
+        font-family: inherit;
+        font-size: 18px;
+        line-height: 1.4;
+
+        color: #000;
+        background: #f5f5f5;
+
+        border: 1px solid #ddd;
+        border-radius: 6px;
+
+        outline: none;
+        box-shadow: none;
+
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+      }
+
+      input:focus,
+      select:focus,
+      textarea:focus {
+        background: #fff;
+        border-color: #3b82f6;
+      }
+
+      input[type="range"]{
+        width: 100%;
+        max-width: 400px;
+        height: 40px;
+        background: #ffc73e77;
+      }
+
+      input[type="range"]::-webkit-slider-thumb {
+        background: black;
+        cursor: pointer;
+        width: 35px;
+        height: 35px;
+        border: none;
+        border-radius: 50%;
+      }
+
+      input[type="range"]::-moz-range-thumb {
+        background: black;
+        cursor: pointer;
+        width: 35px;
+        height: 35px;
+        border: none;
+        border-radius: 50%;
+      }
+
+      /* ---------- Snapshot ---------- */
+
+      .snapshot-footer {
+        margin-top: 10px;
+        margin-bottom: 100px;
+        display: flex;
+        justify-content: center;
+      }
+
+      /* ---------- Table ---------- */
+
+      .data-table {
+        width: 100%;
+        max-width: 480px;
+        margin-top: 20px;
+        border-collapse: collapse;
+        table-layout: fixed;
+      }
+
+      .data-table th {
+        border: 1px solid #000;
+        padding: 6px;
+
+        text-align: center;
+
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      .data-table td {
+        border: 1px solid #000;
+        padding: 6px;
+
+        text-align: center;
+
+        font-size: 16px;
+      }
+
+      .cell-high {
+        background-color: #c8f7c5; /* green */
+      }
+
+      .cell-low {
+        background-color: #f7c5c5; /* red */
+      }
+
+      /* ---------- Notes ---------- */
+
+      .note {
+        color: #4b5563;
+        text-align: center;
+        font-size: 16px;
+      }
+
+      /* ---------- Modal ---------- */
+
+      .modal {
+        display: none;
+
+        position: fixed;
+        inset: 0;
+
+        z-index: 10;
+
+        background: rgba(0, 0, 0, 0.4);
+
+        overflow-y: auto;
+
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal button {
+        width: 120px;
+      }
+
+      #errorModal {
+        z-index: 20;
+      }
+
+      .modal-content {
+        width: 90%;
+        max-width: 480px;
+
+        margin: auto;
+
+        padding: 20px;
+
+        background: #fff;
+        border-radius: 10px;
+      }
+
+      .modal-content h2 {
+        margin-top: 0;
+        font-size: 24px;
+      }
+
+      .modal-content h3 {
+        margin-top: 0px;
+        margin-bottom: 0px;
+        font-size: 22px;
+      }
+
+      #fileDownload-state{
+        color: crimson;
+        display: none;
+      }
+
+      /* ---------- Mobile ---------- */
+
+      @media (max-width: 600px) {
+        body {
+          padding: 12px;
+        }
+
+        header img {
+          height: 36px;
+        }
+
+        header h1 {
+          font-size: 24px;
+        }
+
+        button {
+          padding: 12px;
+          margin: 6px 12px 6px 12px;
+        }
+
+        .modal-content {
+          width: 95%;
+        }
+      }
+
+      /* ---------- Help ---------- */
+
+      .help-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 22px;
+        height: 22px;
+
+        margin-left: 8px;
+
+        border-radius: 50%;
+
+        background: #ffc73e;
+        color: #000;
+
+        font-size: 15px;
+        font-weight: bold;
+
+        cursor: pointer;
+
+        user-select: none;
+        -webkit-user-select: none;
+      }
+
+      .help-box {
+        margin-top: 6px;
+
+        padding: 8px 10px;
+
+        background: #f5f5f5;
+
+        border-radius: 6px;
+
+        font-size: 16px;
+        line-height: 1.5;
+      }
+
+      .help-box ul {
+        margin: 0;
+        padding-left: 22px;
+      }
+
+      .help-box li {
+        margin-bottom: 6px;
+      }
+
+      /* ---------- Utility ---------- */
+
+      .hidden {
+        display: none !important;
+      }
+
+      .auto-toggle {
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <header>
+        <a href="/">
+          <img src="logo.png" alt="Logo" />
+        </a>
+        <h1>Bee Entrance Counter</h1>
+      </header>
+
+      <div class="status-bar">
+        <b>State:</b> <span id="stateLabel">-</span><br />
+        <b>Size:</b> <span id="entranceSizeNow">-</span><br />
+        <b>Time:</b> <span id="timeLabel">-</span><br />
+        Auto refresh in <span id="countdown"></span>
+      </div>
+
+      <div class="rows">
+        <button onclick="setTime()">Set Time</button>
+        <button onclick="confirmAction('/start', 'START')">Start</button>
+        <button onclick="confirmAction('/stop', 'STOP')">Stop</button>
+        <button onclick="confirmAction('/reset', 'RESET')">Reset</button>
+        <button
+          onclick="
+            resetSizeSelector('entranceSizeNew', 'entranceSizeValue', 17);
+            openModal('entranceModal');
+          "
+        >
+          Set Entrance
+        </button>
+        <button onclick="openModal('installModal')">Install</button>
+        <button
+          onclick="
+            getFileList();
+            openModal('fileListModal');
+          "
+        >
+          Get File
+        </button>
+        <button onclick="getSnapshot()">Snapshot</button>
+      </div>
+
+      <div class="snapshot-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th colspan="5">Snapshot data</th>
+            </tr>
+            <tr>
+              <th>#</th>
+              <th>A</th>
+              <th>B</th>
+              <th>C</th>
+              <th>D</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <!-- rows will be generated -->
+          </tbody>
+        </table>
+        <div class="snapshot-footer">
+          <label class="auto-toggle">
+            <input type="checkbox" id="autoUpdateCheckbox" />
+            Auto update (1s)
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div id="confirmModal" class="modal">
+      <div class="modal-content">
+        <h3 id="confirmTitle">Confirm</h3>
+        <p id="confirmMessage">Are you sure?</p>
+        <div style="text-align: center">
+          <button id="confirmOkBtn">OK</button>
+          <button onclick="closeConfirmModal()">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="entranceModal" class="modal">
+      <div class="modal-content">
+        <h3>Set entrance size: <span id="entranceSizeValue"> ? </span></h3>
+        <input
+          type="range"
+          min="3"
+          max="17"
+          step="1"
+          value="17"
+          id="entranceSizeNew"
+        />
+        <div style="text-align: center">
+          <button onclick="setEntrance()">OK</button>
+          <button onclick="closeModal('entranceModal')">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="installModal" class="modal">
+      <div class="modal-content">
+        <h3>Install entrance door</h3>
+        <div style="text-align: center">
+          <button
+            onclick="
+              closeModal('installModal');
+              confirmAction('/load', 'LOAD door');
+            "
+          >
+            Load
+          </button>
+          <button
+            onclick="
+              closeModal('installModal');
+              confirmAction('/unload', 'UNLOAD door');
+            "
+          >
+            Unload
+          </button>
+        </div>
+        <br/>
+        <div style="text-align: center">
+          <button onclick="closeModal('installModal')">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="fileListModal" class="modal">
+      <div class="modal-content">
+        <h2>File Download <span id="fileDownload-state"> in progress.</span></h2>
+        <h3>Select page:</h3>
+        <input type="number" min="1" max="52" value="1" id="fileListSpinner" />
+        <h3>Select file:</h3>
+        <div id="fileList-container" style="text-align: center"></div>
+        <br/>
+        <div style="text-align: center">
+          <button onclick="closeModal('fileListModal')">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="errorModal" class="modal">
+      <div class="modal-content">
+        <div style="display: flex; gap: 10px">
+          <h3 id="errorModalTitle">Oops... Something went wrong.</h3>
+        </div>
+        <div>
+          <p id="errorModalText">...</p>
+        </div>
+        <div style="text-align: center">
+          <button onclick="closeModal('errorModal')">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let refreshInterval = 10;
+      let counter = refreshInterval;
+
+      const tbody = document.getElementById("tableBody");
+
+      const tableCells = [];
+      const THRESHOLDS = {
+        A: 127,
+        B: 127,
+        C: 127,
+        D: 127,
+      };
+
+      for (let i = 0; i < 17; i++) {
+        const row = document.createElement("tr");
+        const rowCells = [];
+        const indexCell = document.createElement("td");
+        indexCell.innerText = i + 1;
+        row.appendChild(indexCell);
+        for (let j = 0; j < 4; j++) {
+          const cell = document.createElement("td");
+          cell.innerText = "-";
+          row.appendChild(cell);
+
+          rowCells.push(cell);
+        }
+        tableCells.push(rowCells);
+        tbody.appendChild(row);
+      }
+
+      /* API */
+      let pendingAction = null;
+
+      function openConfirmModal(message, actionCallback) {
+        document.getElementById("confirmMessage").innerHTML = message;
+
+        pendingAction = actionCallback;
+
+        document.getElementById("confirmModal").style.display = "flex";
+      }
+
+      function closeConfirmModal() {
+        document.getElementById("confirmModal").style.display = "none";
+        pendingAction = null;
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("confirmOkBtn").onclick = () => {
+          if (pendingAction) {
+            pendingAction();
+          }
+          closeConfirmModal();
+        };
+
+        const fileListSpinner = document.getElementById("fileListSpinner");
+        fileListSpinner.addEventListener("input", (e) => {
+          const max_value = Number(fileListSpinner.max);
+          const value = Math.min(
+            Math.max(e.target.valueAsNumber, 1),
+            max_value,
+          );
+          fileListSpinner.value = value;
+          showFileList(value);
+        });
+      });
+
+      function confirmAction(url, actionName) {
+        let message = "Do you want system to <b>" + actionName + "</b>?";
+        openConfirmModal(message, () => {
+          apiCall(url);
+        });
+      }
+      function apiCall(url) {
+        return fetch(url)
+          .then((res) => {
+            if (!res.ok) {
+              throw new Error(`HTTP ${res.status}`);
+            }
+            return res.json();
+          })
+          .catch(() => {
+            return "-";
+          });
+      }
+
+      function setTime() {
+        const [date, time] = new Date().toISOString().split("T");
+        const [year, month, day] = date.split("-");
+        const [hour, minute, second] = time.split(":");
+
+        const url = `/setTime?year=${year}&month=${month}&day=${day}&hour=${hour}&minute=${minute}&second=${second.slice(0, 2)}`;
+
+        apiCall(url);
+      }
+
+      function refreshData() {
+        apiCall("/getState").then((data) => {
+          if (data.status === "ok") {
+            document.getElementById("stateLabel").innerText = data.state;
+          }
+        });
+        apiCall("/getTime").then((data) => {
+          if (data.status === "ok") {
+            document.getElementById("timeLabel").innerText =
+              `${String(data.year).padStart(4, "0")}-${String(data.month).padStart(2, "0")}-${String(data.day).padStart(2, "0")} ${String(data.hour).padStart(2, "0")}:${String(data.minute).padStart(2, "0")}:${String(data.second).padStart(2, "0")}`;
+          }
+        });
+        apiCall("/getEntranceSize").then((data) => {
+          if (data.status === "ok") {
+            document.getElementById("entranceSizeNow").innerText =
+              data.entranceSize;
+          }
+        });
+        apiCall("/getCounterThreshold").then((data) => {
+          if (data.status === "ok") {
+            THRESHOLDS.A = THRESHOLDS.B = THRESHOLDS.C = data.counter_threshold;
+          }
+        });
+        apiCall("/getDoorThreshold").then((data) => {
+          if (data.status === "ok") {
+            THRESHOLDS.D = data.door_threshold;
+          }
+        });
+      }
+
+      setInterval(() => {
+        counter--;
+
+        if (counter <= 0) {
+          refreshData();
+          counter = refreshInterval;
+        }
+
+        document.getElementById("countdown").innerHTML =
+          "<b>" + counter + "</b>" + " s";
+
+        if (document.getElementById("autoUpdateCheckbox").checked) {
+          getSnapshot();
+        }
+      }, 1000);
+
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) counter = refreshInterval;
+      });
+
+      function openModal(arg_modal) {
+        document.getElementById(arg_modal).style.display = "flex";
+      }
+
+      function closeModal(arg_modal) {
+        document.getElementById(arg_modal).style.display = "none";
+      }
+
+      function resetSizeSelector(
+        arg_input_element,
+        arg_output_element,
+        defaultValue,
+      ) {
+        const input = document.getElementById(arg_input_element);
+        const output = document.getElementById(arg_output_element);
+        input.value = defaultValue;
+        output.textContent = defaultValue;
+      }
+
+      function setEntrance() {
+        const size = document.getElementById("entranceSizeNew").value;
+        const url = "/setEntranceSize?size=" + size;
+        apiCall(url)
+          .then((res) => {
+            closeModal("entranceModal");
+          })
+          .catch(() => {});
+      }
+
+      function getFileList() {
+        const container = document.getElementById("fileList-container");
+        container.innerHTML = "";
+
+        fetch("/getFileList")
+          .then(checkForError)
+          .then((res) => res.json())
+          .then((data) => {
+            const getDate = (f) => f.match(/\d{4}_\d{2}_\d{2}/)?.[0] || "";
+            data.sort((a, b) => getDate(b).localeCompare(getDate(a)));
+            data.forEach((name) => {
+              const btn = document.createElement("button");
+              btn.textContent = name;
+              btn.addEventListener("click", () => getFile(name));
+              container.append(btn);
+            });
+            const fileListSpinner = document.getElementById("fileListSpinner");
+            fileListSpinner.max = Math.ceil(data.length / 7);
+            showFileList(fileListSpinner.value);
+          })
+          .catch((error) => {
+            closeModal("fileListModal");
+            console.log(`Error: ${error.code} - ${error.text}`);
+            displayError(error);
+          });
+      }
+
+      function showFileList(n) {
+        const buttons = document.querySelectorAll("#fileList-container button");
+
+        buttons.forEach((btn, index) => {
+          const start = (n - 1) * 7;
+          const end = n * 7;
+
+          if (index >= start && index < end) {
+            btn.style.display = "inline-block";
+          } else {
+            btn.style.display = "none";
+          }
+        });
+      }
+
+      function getFile(arg_file_name) {
+        const url = `/getFile?file_name=${arg_file_name}`;
+        const state = document.getElementById("fileDownload-state");
+        state.style.display = "inline";
+        const buttons = document.querySelectorAll('#fileList-container button');
+        buttons.forEach(button => button.disabled = true);
+        fetch(url)
+          .then(checkForError)
+          .then((res) => res.blob())
+          .then((blob) => {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = arg_file_name;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            window.URL.revokeObjectURL(url);
+          })
+          .catch((error) => {
+            console.log(`Error: ${error.code} - ${error.text}`);
+            displayError(error);
+          })
+          .finally(() => {
+            state.style.display = "none";
+            buttons.forEach(button => button.disabled = false);
+          });
+      }
+
+      function getSnapshot() {
+        fetch("/getSnapshot")
+          .then(checkForError)
+          .then((res) => res.json())
+          .then((data) => {
+            for (let i = 0; i < tableCells.length; i++) {
+              for (let j = 0; j < tableCells[i].length; j++) {
+                const cell = tableCells[i][j];
+                const value = data[i][j];
+                const colName = ["A", "B", "C", "D"][j];
+                const threshold = THRESHOLDS[colName];
+                cell.innerText = value;
+                cell.classList.remove("cell-high", "cell-low");
+                if (value >= threshold) {
+                  cell.classList.add("cell-high");
+                } else {
+                  cell.classList.add("cell-low");
+                }
+              }
+            }
+          })
+          .catch((error) => {
+            stopAutoUpdate();
+            displayError(error);
+          });
+      }
+
+      function stopAutoUpdate() {
+        document.getElementById("autoUpdateCheckbox").checked = false;
+      }
+
+      async function checkForError(arg_res) {
+        if (!arg_res.ok) {
+          const text = await arg_res.text();
+          const err = new Error(`HTTP ${arg_res.status}`);
+          err.code = arg_res.status;
+          err.text = text;
+          throw err;
+        }
+        return arg_res;
+      }
+
+      function displayError(arg_error) {
+        document.getElementById("errorModalTitle").innerHTML = arg_error.title;
+        document.getElementById("errorModalText").innerHTML = arg_error.text;
+        openModal("errorModal");
+      }
+
+      window.onload = () => {
+        document
+          .getElementById("entranceSizeNew")
+          .addEventListener("input", () => {
+            document.getElementById("entranceSizeValue").textContent =
+              document.getElementById("entranceSizeNew").value;
+          });
+
+        refreshData();
+      };
+    </script>
+  </body>
+</html>

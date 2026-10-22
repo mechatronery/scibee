@@ -1,0 +1,9 @@
+Used:
+	RPi5: https://www.printables.com/model/727155-raspberry-pi-5/files
+	RPzero: https://www.printables.com/model/988094-raspberry-pi-zero-2-w
+
+
+Original:
+https://pip.raspberrypi.com/
+	RPi5 : https://pip.raspberrypi.com/categories/892-raspberry-pi-5
+	RPZero: 

@@ -1,0 +1,2517 @@
+(kicad_sch
+	(version 20260306)
+	(generator "eeschema")
+	(generator_version "10.0")
+	(uuid "e6efee08-4ff0-4290-b908-f6703e85da7c")
+	(paper "A4")
+	(lib_symbols
+		(symbol "matko000_library:Capacitor"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0.254)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "C"
+				(at 2.413 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 0.9 0.9)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "Capacitor"
+				(at 0.381 -1.524 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 0.8 0.8)
+					)
+					(justify left top)
+				)
+			)
+			(property "Footprint" "matko000_general:C_0402_(1005)"
+				(at 0 0.508 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 0.5 0.5)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 -0.762 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 0.5 0.5)
+					)
+				)
+			)
+			(property "Description" "Unpolarized capacitor"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Voltage" "\"Voltage\""
+				(at 0 -1.016 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 0.7 0.7)
+					)
+					(justify right top)
+				)
+			)
+			(property "Tolerance" "\"Tolerance\""
+				(at 0 -2.286 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 0.7 0.7)
+					)
+					(justify right top)
+				)
+			)
+			(property "Case" "\"Case\""
+				(at 0.254 1.27 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 0.7 0.7)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "Suplier1" ""
+				(at -0.762 3.302 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 0.5 0.5)
+					)
+					(justify right bottom)
+				)
+			)
+			(property "Suplier1 no." ""
+				(at -0.762 2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 0.5 0.5)
+					)
+					(justify right bottom)
+				)
+			)
+			(property "Suplier2" ""
+				(at -0.762 1.778 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 0.5 0.5)
+					)
+					(justify right bottom)
+				)
+			)
+			(property "Suplier2 no." ""
+				(at -0.762 1.016 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 0.5 0.5)
+					)
+					(justify right bottom)
+				)
+			)
+			(property "ki_keywords" "cap capacitor"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "C_*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "Capacitor_0_1"
+				(polyline
+					(pts
+						(xy -1.524 0.508) (xy 1.524 0.508)
+					)
+					(stroke
+						(width 0.508)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.524 -0.508) (xy 1.524 -0.508)
+					)
+					(stroke
+						(width 0.508)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "Capacitor_1_1"
+				(pin passive line
+					(at 0 2.54 270)
+					(length 1.8542)
+					(name ""
+						(effects
+							(font
+								(size 1 1)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1 1)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -2.54 90)
+					(length 1.8542)
+					(name ""
+						(effects
+							(font
+								(size 1 1)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1 1)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "matko000_library:Resistor"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "R"
+				(at -0.254 -2.794 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 0.9 0.9)
+					)
+					(justify right bottom)
+				)
+			)
+			(property "Value" "Resistor"
+				(at 0 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 0.8 0.8)
+					)
+				)
+			)
+			(property "Footprint" "matko000_general:R_0402_(1005)"
+				(at -0.508 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 0.5 0.5)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0.762 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 0.5 0.5)
+					)
+				)
+			)
+			(property "Description" "Resistor"
+				(at 1.778 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 0.5 0.5)
+					)
+				)
+			)
+			(property "Tolerance" "\"Tolerance\""
+				(at 0.254 2.54 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 0.7 0.7)
+					)
+					(justify left top)
+				)
+			)
+			(property "Case" "\"Footprint\""
+				(at -0.254 2.54 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 0.7 0.7)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "Voltage" "\"Voltage\""
+				(at 0.254 -2.794 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 0.7 0.7)
+					)
+					(justify right top)
+				)
+			)
+			(property "Suplier1" ""
+				(at 1.524 -2.794 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 0.5 0.5)
+					)
+					(justify left top)
+				)
+			)
+			(property "Suplier1 no." ""
+				(at 1.524 -3.556 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 0.5 0.5)
+					)
+					(justify left top)
+				)
+			)
+			(property "Suplier2" ""
+				(at 1.524 -4.318 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 0.5 0.5)
+					)
+					(justify left top)
+				)
+			)
+			(property "Suplier2 no." ""
+				(at 1.524 -5.08 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 0.5 0.5)
+					)
+					(justify left top)
+				)
+			)
+			(property "ki_keywords" "R res resistor"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "R_*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "Resistor_0_1"
+				(rectangle
+					(start -1.016 2.54)
+					(end 1.016 -2.54)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "Resistor_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 1.27)
+					(name ""
+						(effects
+							(font
+								(size 1 1)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1 1)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 1.27)
+					(name ""
+						(effects
+							(font
+								(size 1 1)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1 1)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "matko000_library:TPS7A2625"
+			(pin_numbers
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "U"
+				(at 2.54 5.588 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 0.889 0.889)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "Value" "TPS7A2625"
+				(at 0.762 -3.048 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 0.7874 0.7874)
+					)
+					(justify left top)
+				)
+			)
+			(property "Footprint" "matko000_general:DFN-6-1EP_2x2mm_P0.65mm"
+				(at 0 1.27 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 0.5 0.5)
+						(italic yes)
+					)
+				)
+			)
+			(property "Datasheet" "https://www.ti.com/lit/ds/symlink/tps7a26.pdf?ts=1751899085990&ref_url=https%253A%252F%252Feu.mouser.com%252F"
+				(at 0 -0.508 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 0.5 0.5)
+						(italic yes)
+					)
+				)
+			)
+			(property "Description" "LDO Voltage regultor with Enable"
+				(at 0.254 -1.524 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 0.5 0.5)
+					)
+				)
+			)
+			(property "Suplier1" ""
+				(at -0.254 -2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 0.5 0.5)
+					)
+					(justify right top)
+				)
+			)
+			(property "Suplier1 no." ""
+				(at -0.254 -3.302 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 0.5 0.5)
+					)
+					(justify right top)
+				)
+			)
+			(property "Suplier2" ""
+				(at -0.254 -4.064 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 0.5 0.5)
+					)
+					(justify right top)
+				)
+			)
+			(property "Suplier2 no." ""
+				(at -0.254 -4.826 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 0.5 0.5)
+					)
+					(justify right top)
+				)
+			)
+			(property "ki_keywords" "LDO enable"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "TPS7A2625_0_1"
+				(rectangle
+					(start -5.08 5.08)
+					(end 5.08 -2.54)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+			)
+			(symbol "TPS7A2625_1_1"
+				(pin power_in line
+					(at 0 -5.08 90)
+					(length 2.54)
+					(hide yes)
+					(name "GND"
+						(effects
+							(font
+								(size 1 1)
+							)
+						)
+					)
+					(number "0"
+						(effects
+							(font
+								(size 1 1)
+							)
+						)
+					)
+				)
+				(pin power_out line
+					(at 7.62 2.54 180)
+					(length 2.54)
+					(name "Vout"
+						(effects
+							(font
+								(size 1 1)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1 1)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 7.62 0 180)
+					(length 2.54)
+					(name "fb"
+						(effects
+							(font
+								(size 1 1)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1 1)
+							)
+						)
+					)
+				)
+				(pin open_collector line
+					(at 0 7.62 270)
+					(length 2.54)
+					(name "PG"
+						(effects
+							(font
+								(size 1 1)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1 1)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -7.62 0 0)
+					(length 2.54)
+					(name "EN"
+						(effects
+							(font
+								(size 1 1)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1 1)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 0 -5.08 90)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1 1)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1 1)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at -7.62 2.54 0)
+					(length 2.54)
+					(name "Vin"
+						(effects
+							(font
+								(size 1 1)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1 1)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+	)
+	(junction
+		(at 153.67 127)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "0bbb6246-13e6-4db8-844a-8cd2dd21a3df")
+	)
+	(junction
+		(at 121.92 127)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "2d7d5ac6-de30-4edd-856c-0e9a8a91a94d")
+	)
+	(junction
+		(at 153.67 102.87)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "480fcb7c-5393-479a-bc14-d074c9fc4abd")
+	)
+	(junction
+		(at 153.67 88.9)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "5dd4cedc-2f62-4052-b5b4-ed4b9e942e98")
+	)
+	(junction
+		(at 133.35 97.79)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "6f500bcc-565a-4c1d-8298-5a73539b37a9")
+	)
+	(junction
+		(at 148.59 88.9)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "a5cd9364-6624-4938-a4c0-c0a191052cef")
+	)
+	(junction
+		(at 121.92 88.9)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "b6b5bc9e-c2de-4002-95f0-c4a675cfb9dc")
+	)
+	(junction
+		(at 148.59 102.87)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "cc34c755-04da-4f74-b9a7-247d343793c1")
+	)
+	(junction
+		(at 148.59 127)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "d4de6778-64e4-4250-a132-d924ea9e22a8")
+	)
+	(junction
+		(at 162.56 88.9)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "ecb1e477-ab99-4752-930b-92c75ff929d9")
+	)
+	(junction
+		(at 133.35 127)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "f3dc5f54-6175-4b37-989e-f9e4782f147f")
+	)
+	(wire
+		(pts
+			(xy 148.59 127) (xy 153.67 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0a5ed74e-5cac-423c-aef7-bf07af12525b")
+	)
+	(wire
+		(pts
+			(xy 153.67 124.46) (xy 153.67 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "12b31777-65d4-4826-b14f-a9051003df3a")
+	)
+	(wire
+		(pts
+			(xy 124.46 82.55) (xy 133.35 82.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "159dde04-9587-4dca-bcb5-bf61923bd271")
+	)
+	(wire
+		(pts
+			(xy 148.59 88.9) (xy 148.59 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2677037f-d96a-43b6-8cba-176773b85f5a")
+	)
+	(wire
+		(pts
+			(xy 118.11 91.44) (xy 125.73 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "28716acf-a978-4d6d-b874-cb12d8e3127f")
+	)
+	(wire
+		(pts
+			(xy 148.59 88.9) (xy 153.67 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2b02f45d-929e-47a7-a517-e24131ff4aba")
+	)
+	(wire
+		(pts
+			(xy 143.51 102.87) (xy 148.59 102.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "39221a04-505c-42cd-b049-b8b0812b76d1")
+	)
+	(wire
+		(pts
+			(xy 153.67 113.03) (xy 153.67 116.84)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "39dd2372-bf2b-45f7-bba9-b3c0986d2596")
+	)
+	(wire
+		(pts
+			(xy 153.67 102.87) (xy 148.59 102.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "39f8e70d-c8e9-48e7-9532-41f3232951a1")
+	)
+	(wire
+		(pts
+			(xy 124.46 82.55) (xy 124.46 97.79)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "501da494-7a09-4c30-8417-b118fbf41ab9")
+	)
+	(wire
+		(pts
+			(xy 133.35 97.79) (xy 133.35 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5ba7b83a-3a02-45c6-8980-a33d80cd9aa4")
+	)
+	(wire
+		(pts
+			(xy 148.59 102.87) (xy 148.59 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5e72dd9b-2c14-446a-b6d5-45c1639f67a7")
+	)
+	(wire
+		(pts
+			(xy 133.35 82.55) (xy 133.35 83.82)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "612b53d3-5712-485d-ac82-c5db1ad306ca")
+	)
+	(wire
+		(pts
+			(xy 153.67 127) (xy 162.56 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "65188e41-4afa-4db7-a3f4-61aad84c1f53")
+	)
+	(wire
+		(pts
+			(xy 133.35 96.52) (xy 133.35 97.79)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6b93aabb-d068-450a-81f4-ef46b0ac5cdf")
+	)
+	(wire
+		(pts
+			(xy 121.92 88.9) (xy 125.73 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "80a98fcb-ee3c-4404-bc70-2857b6ac0267")
+	)
+	(wire
+		(pts
+			(xy 162.56 109.22) (xy 162.56 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "96d6768d-9fdc-4a80-8e63-7000aa85e2ff")
+	)
+	(wire
+		(pts
+			(xy 153.67 88.9) (xy 162.56 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "99ad506c-b883-4138-87df-032983894188")
+	)
+	(wire
+		(pts
+			(xy 140.97 88.9) (xy 148.59 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9afbd866-550b-4210-944c-c8fd263f6075")
+	)
+	(wire
+		(pts
+			(xy 143.51 91.44) (xy 143.51 102.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9c13f953-9f15-4f14-8bb6-31e2983a784d")
+	)
+	(wire
+		(pts
+			(xy 148.59 118.11) (xy 148.59 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9db83c76-25a3-435f-a3a6-db931893ea18")
+	)
+	(wire
+		(pts
+			(xy 121.92 109.22) (xy 121.92 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a034c669-0b45-462f-80b2-8d0863d9c4c0")
+	)
+	(wire
+		(pts
+			(xy 153.67 102.87) (xy 153.67 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a4e8f919-731e-43d2-bc89-9acca23aebcc")
+	)
+	(wire
+		(pts
+			(xy 114.3 127) (xy 121.92 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ac9fb13f-c63b-4534-b172-9e774b39cb87")
+	)
+	(wire
+		(pts
+			(xy 162.56 88.9) (xy 162.56 104.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b5e98189-f043-4655-a6f5-d76bc94b23a9")
+	)
+	(wire
+		(pts
+			(xy 148.59 102.87) (xy 148.59 110.49)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b69e9144-34b4-4c36-9da6-17b8bd931899")
+	)
+	(wire
+		(pts
+			(xy 114.3 88.9) (xy 121.92 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bd6f8ec7-a276-4d40-9d79-1fdd04ad0275")
+	)
+	(wire
+		(pts
+			(xy 162.56 88.9) (xy 165.1 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bfa7c3db-7c62-4ad7-924a-d317d5de4c4b")
+	)
+	(wire
+		(pts
+			(xy 133.35 127) (xy 148.59 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c31067c9-74f2-462e-8a03-3fc85d82b05e")
+	)
+	(wire
+		(pts
+			(xy 121.92 127) (xy 133.35 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c695c5de-f084-4f7e-b388-2818c50cda70")
+	)
+	(wire
+		(pts
+			(xy 121.92 88.9) (xy 121.92 104.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cc734fa2-2e18-4205-a027-9cee5f24181c")
+	)
+	(wire
+		(pts
+			(xy 140.97 91.44) (xy 143.51 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d7751245-b865-484d-8541-fdc5ae2776f1")
+	)
+	(wire
+		(pts
+			(xy 153.67 88.9) (xy 153.67 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d78f394e-5c1e-4e98-b15e-869bc01aa836")
+	)
+	(wire
+		(pts
+			(xy 153.67 102.87) (xy 153.67 105.41)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ee29d688-cfe0-4c2a-81e3-caec21555ccd")
+	)
+	(wire
+		(pts
+			(xy 124.46 97.79) (xy 133.35 97.79)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ff2a1f45-1a58-4bf8-a576-b61e0b7c680e")
+	)
+	(hierarchical_label "EN"
+		(shape input)
+		(at 118.11 91.44 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.1588)
+			)
+			(justify right)
+		)
+		(uuid "4e7056ea-f44d-4387-82e4-09b01a02c90d")
+	)
+	(hierarchical_label "+Vin"
+		(shape input)
+		(at 114.3 88.9 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+				(bold yes)
+			)
+			(justify right)
+		)
+		(uuid "790bf15b-d778-4bdf-9d6b-2622fefa1dbc")
+	)
+	(hierarchical_label "GND"
+		(shape input)
+		(at 114.3 127 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+				(bold yes)
+			)
+			(justify right)
+		)
+		(uuid "96916dd3-7e14-4b3a-b400-25734f99b871")
+	)
+	(hierarchical_label "+Vout"
+		(shape output)
+		(at 165.1 88.9 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+				(bold yes)
+			)
+			(justify left)
+		)
+		(uuid "ebd90cb9-4644-4a48-8b32-1cd13b4cddce")
+	)
+	(symbol
+		(lib_id "matko000_library:Resistor")
+		(at 153.67 120.65 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "315b4aee-d95d-4803-ba47-55104e16b61f")
+		(property "Reference" "R19"
+			(at 153.416 123.444 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.9 0.9)
+				)
+				(justify right bottom)
+			)
+		)
+		(property "Value" "68k"
+			(at 153.67 120.65 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.8 0.8)
+				)
+			)
+		)
+		(property "Footprint" "matko000_general:R_0402_(1005)"
+			(at 153.162 120.65 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 154.432 120.65 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 155.448 120.65 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+			)
+		)
+		(property "Tolerance" "1%"
+			(at 153.924 118.11 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.7 0.7)
+				)
+				(justify left top)
+			)
+		)
+		(property "Case" "0402"
+			(at 153.416 118.11 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.7 0.7)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Suplier1" "Yageo"
+			(at 153.924 123.19 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+				(justify left top)
+			)
+		)
+		(property "Suplier1 no." "RC0402FR-0768KL"
+			(at 153.924 123.952 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+				(justify left top)
+			)
+		)
+		(property "Suplier2" ""
+			(at 153.924 124.714 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+				(justify left top)
+			)
+		)
+		(property "Suplier2 no." ""
+			(at 153.924 125.476 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+				(justify left top)
+			)
+		)
+		(property "Voltage" "\"Voltage\""
+			(at 153.924 123.444 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.7 0.7)
+				)
+				(justify right top)
+			)
+		)
+		(pin "1"
+			(uuid "f8f86b18-e7bc-4abb-829c-558700db1e24")
+		)
+		(pin "2"
+			(uuid "e03b4bd4-6ffa-4f94-8eac-f59d464eb772")
+		)
+		(instances
+			(project "scibee_base_controller"
+				(path "/acc5b623-ef5e-42f5-8f4e-a093e17f142e/42c9e564-8277-4dfa-9785-5642247de3e7"
+					(reference "R22")
+					(unit 1)
+				)
+				(path "/acc5b623-ef5e-42f5-8f4e-a093e17f142e/5ff77938-347a-4b01-ac10-0b301b362262"
+					(reference "R19")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "matko000_library:Capacitor")
+		(at 121.92 106.68 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "483f283b-9432-4414-8d9b-81a9d1b19ef4")
+		(property "Reference" "C52"
+			(at 124.333 106.68 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.9 0.9)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1uF"
+			(at 122.301 108.204 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.8 0.8)
+				)
+				(justify left top)
+			)
+		)
+		(property "Footprint" "matko000_general:C_0603_(1608)"
+			(at 121.92 106.172 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 121.92 107.442 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 121.92 106.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Voltage" "25V"
+			(at 121.92 107.696 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.7 0.7)
+				)
+				(justify right top)
+			)
+		)
+		(property "Tolerance" "X7R"
+			(at 121.92 108.966 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.7 0.7)
+				)
+				(justify right top)
+			)
+		)
+		(property "Case" "0603"
+			(at 122.174 105.41 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.7 0.7)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Suplier1" "TDK"
+			(at 121.158 103.378 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+				(justify right bottom)
+			)
+		)
+		(property "Suplier1 no." "CGA3E1X7R1V105K080AC"
+			(at 121.158 104.14 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+				(justify right bottom)
+			)
+		)
+		(property "Suplier2" ""
+			(at 121.158 104.902 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+				(justify right bottom)
+			)
+		)
+		(property "Suplier2 no." ""
+			(at 121.158 105.664 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+				(justify right bottom)
+			)
+		)
+		(pin "1"
+			(uuid "0e1a6ed3-6a3b-4698-b621-dda7f5795e6d")
+		)
+		(pin "2"
+			(uuid "2d0e4110-fd88-4440-8448-f0db8f02fb9b")
+		)
+		(instances
+			(project "scibee_base_controller"
+				(path "/acc5b623-ef5e-42f5-8f4e-a093e17f142e/42c9e564-8277-4dfa-9785-5642247de3e7"
+					(reference "C66")
+					(unit 1)
+				)
+				(path "/acc5b623-ef5e-42f5-8f4e-a093e17f142e/5ff77938-347a-4b01-ac10-0b301b362262"
+					(reference "C52")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "matko000_library:Capacitor")
+		(at 162.56 106.68 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "4a4a3296-5597-4ee7-b18a-50662e141bb6")
+		(property "Reference" "C53"
+			(at 164.973 106.68 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.9 0.9)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10uF"
+			(at 162.941 108.204 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.8 0.8)
+				)
+				(justify left top)
+			)
+		)
+		(property "Footprint" "matko000_general:C_1206_(3216)"
+			(at 162.56 106.172 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 162.56 107.442 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 162.56 106.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Voltage" "25V"
+			(at 162.56 107.696 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.7 0.7)
+				)
+				(justify right top)
+			)
+		)
+		(property "Tolerance" "X7R"
+			(at 162.56 108.966 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.7 0.7)
+				)
+				(justify right top)
+			)
+		)
+		(property "Case" "1206"
+			(at 162.814 105.41 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.7 0.7)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Suplier1" "Samsung"
+			(at 161.798 103.378 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+				(justify right bottom)
+			)
+		)
+		(property "Suplier1 no." "CL31B106KLHNNNE"
+			(at 161.798 104.14 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+				(justify right bottom)
+			)
+		)
+		(property "Suplier2" ""
+			(at 161.798 104.902 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+				(justify right bottom)
+			)
+		)
+		(property "Suplier2 no." ""
+			(at 161.798 105.664 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+				(justify right bottom)
+			)
+		)
+		(pin "1"
+			(uuid "020652a4-010c-4c01-990d-0ae37f43fc81")
+		)
+		(pin "2"
+			(uuid "8e3d2163-9c7c-4e89-83c8-fa35517ceba3")
+		)
+		(instances
+			(project "scibee_base_controller"
+				(path "/acc5b623-ef5e-42f5-8f4e-a093e17f142e/42c9e564-8277-4dfa-9785-5642247de3e7"
+					(reference "C67")
+					(unit 1)
+				)
+				(path "/acc5b623-ef5e-42f5-8f4e-a093e17f142e/5ff77938-347a-4b01-ac10-0b301b362262"
+					(reference "C53")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "matko000_library:Resistor")
+		(at 148.59 114.3 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "4a99cbc2-0cb9-450d-ba94-34e9083aa061")
+		(property "Reference" "R48"
+			(at 148.336 117.094 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.9 0.9)
+				)
+				(justify right bottom)
+			)
+		)
+		(property "Value" "-"
+			(at 148.59 114.3 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.8 0.8)
+				)
+			)
+		)
+		(property "Footprint" "matko000_general:R_0402_(1005)"
+			(at 148.082 114.3 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 149.352 114.3 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 150.368 114.3 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+			)
+		)
+		(property "Tolerance" "1%"
+			(at 148.844 111.76 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.7 0.7)
+				)
+				(justify left top)
+			)
+		)
+		(property "Case" "0402"
+			(at 148.336 111.76 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.7 0.7)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Suplier1" ""
+			(at 148.844 116.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+				(justify left top)
+			)
+		)
+		(property "Suplier1 no." ""
+			(at 148.844 117.602 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+				(justify left top)
+			)
+		)
+		(property "Suplier2" ""
+			(at 148.844 118.364 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+				(justify left top)
+			)
+		)
+		(property "Suplier2 no." ""
+			(at 148.844 119.126 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+				(justify left top)
+			)
+		)
+		(property "Voltage" "\"Voltage\""
+			(at 148.844 117.094 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.7 0.7)
+				)
+				(justify right top)
+			)
+		)
+		(pin "1"
+			(uuid "d41409e7-4762-403e-b524-97a21a0473ae")
+		)
+		(pin "2"
+			(uuid "30eb5f2a-b12f-4a8c-9c07-1c79ccdae033")
+		)
+		(instances
+			(project "scibee_base_controller"
+				(path "/acc5b623-ef5e-42f5-8f4e-a093e17f142e/42c9e564-8277-4dfa-9785-5642247de3e7"
+					(reference "R61")
+					(unit 1)
+				)
+				(path "/acc5b623-ef5e-42f5-8f4e-a093e17f142e/5ff77938-347a-4b01-ac10-0b301b362262"
+					(reference "R48")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "matko000_library:Resistor")
+		(at 153.67 95.25 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "611880fc-bc36-4f32-913d-478614fac4d6")
+		(property "Reference" "R47"
+			(at 153.416 98.044 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.9 0.9)
+				)
+				(justify right bottom)
+			)
+		)
+		(property "Value" "470k"
+			(at 153.67 95.25 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.8 0.8)
+				)
+			)
+		)
+		(property "Footprint" "matko000_general:R_0402_(1005)"
+			(at 153.162 95.25 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 154.432 95.25 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 155.448 95.25 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+			)
+		)
+		(property "Tolerance" "1%"
+			(at 153.924 92.71 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.7 0.7)
+				)
+				(justify left top)
+			)
+		)
+		(property "Case" "0402"
+			(at 153.416 92.71 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.7 0.7)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Suplier1" "Yageo"
+			(at 153.924 97.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+				(justify left top)
+			)
+		)
+		(property "Suplier1 no." "RC0402FR-07470KL "
+			(at 153.924 98.552 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+				(justify left top)
+			)
+		)
+		(property "Suplier2" ""
+			(at 153.924 99.314 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+				(justify left top)
+			)
+		)
+		(property "Suplier2 no." ""
+			(at 153.924 100.076 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+				(justify left top)
+			)
+		)
+		(property "Voltage" "\"Voltage\""
+			(at 153.924 98.044 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.7 0.7)
+				)
+				(justify right top)
+			)
+		)
+		(pin "1"
+			(uuid "31fe7dd0-9a9e-43fb-ab9e-7b1ece45e1ff")
+		)
+		(pin "2"
+			(uuid "59e2d241-4875-4f83-ad21-a067f14fc8c2")
+		)
+		(instances
+			(project "scibee_base_controller"
+				(path "/acc5b623-ef5e-42f5-8f4e-a093e17f142e/42c9e564-8277-4dfa-9785-5642247de3e7"
+					(reference "R60")
+					(unit 1)
+				)
+				(path "/acc5b623-ef5e-42f5-8f4e-a093e17f142e/5ff77938-347a-4b01-ac10-0b301b362262"
+					(reference "R47")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "matko000_library:Resistor")
+		(at 148.59 95.25 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "7679e821-f5a4-48d9-a4f1-c367c23076f5")
+		(property "Reference" "R46"
+			(at 148.336 98.044 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.9 0.9)
+				)
+				(justify right bottom)
+			)
+		)
+		(property "Value" "470k"
+			(at 148.59 95.25 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.8 0.8)
+				)
+			)
+		)
+		(property "Footprint" "matko000_general:R_0402_(1005)"
+			(at 148.082 95.25 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 149.352 95.25 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 150.368 95.25 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+			)
+		)
+		(property "Tolerance" "1%"
+			(at 148.844 92.71 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.7 0.7)
+				)
+				(justify left top)
+			)
+		)
+		(property "Case" "0402"
+			(at 148.336 92.71 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.7 0.7)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Suplier1" "Yageo"
+			(at 148.844 97.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+				(justify left top)
+			)
+		)
+		(property "Suplier1 no." "RC0402FR-07470KL "
+			(at 148.844 98.552 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+				(justify left top)
+			)
+		)
+		(property "Suplier2" ""
+			(at 148.844 99.314 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+				(justify left top)
+			)
+		)
+		(property "Suplier2 no." ""
+			(at 148.844 100.076 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+				(justify left top)
+			)
+		)
+		(property "Voltage" "\"Voltage\""
+			(at 148.844 98.044 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.7 0.7)
+				)
+				(justify right top)
+			)
+		)
+		(pin "1"
+			(uuid "2df60454-1be5-4ea3-96cc-4f9de5ea1c6b")
+		)
+		(pin "2"
+			(uuid "6e9bd5ca-2df0-4801-a659-666793a8e5a0")
+		)
+		(instances
+			(project "scibee_base_controller"
+				(path "/acc5b623-ef5e-42f5-8f4e-a093e17f142e/42c9e564-8277-4dfa-9785-5642247de3e7"
+					(reference "R59")
+					(unit 1)
+				)
+				(path "/acc5b623-ef5e-42f5-8f4e-a093e17f142e/5ff77938-347a-4b01-ac10-0b301b362262"
+					(reference "R46")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "matko000_library:Resistor")
+		(at 153.67 109.22 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "adda2d45-2c86-4955-b13d-0d213611fbfe")
+		(property "Reference" "R18"
+			(at 153.416 112.014 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.9 0.9)
+				)
+				(justify right bottom)
+			)
+		)
+		(property "Value" "68k"
+			(at 153.67 109.22 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.8 0.8)
+				)
+			)
+		)
+		(property "Footprint" "matko000_general:R_0402_(1005)"
+			(at 153.162 109.22 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 154.432 109.22 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 155.448 109.22 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+			)
+		)
+		(property "Tolerance" "1%"
+			(at 153.924 106.68 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.7 0.7)
+				)
+				(justify left top)
+			)
+		)
+		(property "Case" "0402"
+			(at 153.416 106.68 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.7 0.7)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Suplier1" "Yageo"
+			(at 153.924 111.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+				(justify left top)
+			)
+		)
+		(property "Suplier1 no." "RC0402FR-0768KL"
+			(at 153.924 112.522 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+				(justify left top)
+			)
+		)
+		(property "Suplier2" ""
+			(at 153.924 113.284 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+				(justify left top)
+			)
+		)
+		(property "Suplier2 no." ""
+			(at 153.924 114.046 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+				(justify left top)
+			)
+		)
+		(property "Voltage" "\"Voltage\""
+			(at 153.924 112.014 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.7 0.7)
+				)
+				(justify right top)
+			)
+		)
+		(pin "1"
+			(uuid "c8670c05-3f33-449f-b55d-35101bd6025f")
+		)
+		(pin "2"
+			(uuid "ab150c6a-6da2-43ae-9afe-9f6c26da8a9b")
+		)
+		(instances
+			(project "scibee_base_controller"
+				(path "/acc5b623-ef5e-42f5-8f4e-a093e17f142e/42c9e564-8277-4dfa-9785-5642247de3e7"
+					(reference "R21")
+					(unit 1)
+				)
+				(path "/acc5b623-ef5e-42f5-8f4e-a093e17f142e/5ff77938-347a-4b01-ac10-0b301b362262"
+					(reference "R18")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "matko000_library:TPS7A2625")
+		(at 133.35 91.44 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "f7c225b5-9283-4eca-aa5c-033a77c13f50")
+		(property "Reference" "U11"
+			(at 135.89 85.852 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.889 0.889)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Value" "TPS7A2601"
+			(at 134.112 94.488 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.7874 0.7874)
+				)
+				(justify left top)
+			)
+		)
+		(property "Footprint" "matko000_general:DFN-6-1EP_2x2mm_P0.65mm"
+			(at 133.35 90.17 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+					(italic yes)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/tps7a26.pdf?ts=1751899085990&ref_url=https%253A%252F%252Feu.mouser.com%252F"
+			(at 133.35 91.948 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+					(italic yes)
+				)
+			)
+		)
+		(property "Description" "LDO Voltage regultor with Enable"
+			(at 133.604 92.964 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+			)
+		)
+		(property "Suplier1" "Texas Instruments"
+			(at 133.096 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+				(justify right top)
+			)
+		)
+		(property "Suplier1 no." "TPS7A2601DRVR"
+			(at 133.096 94.742 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+				(justify right top)
+			)
+		)
+		(property "Suplier2" ""
+			(at 133.096 95.504 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+				(justify right top)
+			)
+		)
+		(property "Suplier2 no." ""
+			(at 133.096 96.266 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.5 0.5)
+				)
+				(justify right top)
+			)
+		)
+		(pin "0"
+			(uuid "44c197bc-714b-4fc5-87e5-f07091e51f14")
+		)
+		(pin "4"
+			(uuid "becde660-7965-4781-a1b5-841acc23249f")
+		)
+		(pin "6"
+			(uuid "70dd1627-5871-4950-be4c-1c25988d9465")
+		)
+		(pin "1"
+			(uuid "c565b864-5dcb-4ed4-b29e-dcd5d442c269")
+		)
+		(pin "3"
+			(uuid "6f7843b6-9aea-4587-851e-6fbc80b45c17")
+		)
+		(pin "2"
+			(uuid "dcd8fd04-baf5-4323-a8a8-60fe483e80e8")
+		)
+		(pin "5"
+			(uuid "fb0b9de3-c0a3-45ad-897c-17821c170ac1")
+		)
+		(instances
+			(project "scibee_base_controller"
+				(path "/acc5b623-ef5e-42f5-8f4e-a093e17f142e/42c9e564-8277-4dfa-9785-5642247de3e7"
+					(reference "U15")
+					(unit 1)
+				)
+				(path "/acc5b623-ef5e-42f5-8f4e-a093e17f142e/5ff77938-347a-4b01-ac10-0b301b362262"
+					(reference "U11")
+					(unit 1)
+				)
+			)
+		)
+	)
+)

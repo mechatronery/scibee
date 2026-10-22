@@ -1,0 +1,8 @@
+{
+    "community": {
+        "blooming": "http://127.0.0.1/community_blooming",
+        "meadows": "http://127.0.0.1/community_meadows",
+        "varroa": "http://127.0.0.1/community_varroa",
+        "spraying": "http://127.0.0.1/community_spraying"
+    }
+}

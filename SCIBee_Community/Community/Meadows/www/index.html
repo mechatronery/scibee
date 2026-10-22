@@ -1,0 +1,977 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- leaflet -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <!-- leaflet markercluster-->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css"
+    />
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+    <title>Meadows Community Info</title>
+    <style>
+      /* ---------- Global ---------- */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+      }
+
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 18px;
+        line-height: 1.5;
+
+        margin: 0;
+        padding: 16px;
+
+        background: #f5f5f5;
+        color: #000;
+      }
+
+      /* ---------- Header ---------- */
+
+      header {
+        display: flex;
+        align-items: center;
+      }
+
+      header img {
+        height: 50px;
+        margin-top: 6px;
+        margin-right: 12px;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 30px;
+        font-weight: bold;
+        line-height: 1.2;
+      }
+
+      /* ---------- Layout ---------- */
+
+      .container {
+        max-width: 900px;
+        margin: auto;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .status-bar {
+        font-size: 16px;
+      }
+
+      .status-bar span {
+        display: inline-block;
+        min-width: 120px;
+        font-weight: bold;
+      }
+      /* ---------- Buttons ---------- */
+
+      button {
+        width: 140px;
+        min-height: 44px;
+
+        padding: 12px;
+        margin: 12px;
+
+        font-family: inherit;
+        font-size: 18px;
+        font-weight: bold;
+        line-height: 1.2;
+
+        border: none;
+        border-radius: 6px;
+
+        background: #ffc73e;
+        color: #000;
+
+        cursor: pointer;
+        flex-shrink: 0;
+
+        appearance: none;
+        -webkit-appearance: none;
+
+        transition: filter 0.15s ease;
+      }
+
+      button:active {
+        filter: brightness(0.9);
+      }
+
+      /* ---------- Forms ---------- */
+
+      form,
+      fieldset {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border: 0;
+      }
+
+      fieldset {
+        margin-bottom: 14px;
+      }
+
+      label {
+        display: block;
+
+        margin: 10px 0 6px;
+
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+
+        padding: 12px;
+
+        margin: 6px 0 14px;
+
+        font-family: inherit;
+        font-size: 18px;
+        line-height: 1.4;
+
+        color: #000;
+        background: #f5f5f5;
+
+        border: 1px solid #ddd;
+        border-radius: 6px;
+
+        outline: none;
+        box-shadow: none;
+
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+      }
+
+      input:focus,
+      select:focus,
+      textarea:focus {
+        background: #fff;
+        border-color: #3b82f6;
+      }
+
+      /* ---------- Table ---------- */
+
+      .data-table {
+        width: 100%;
+        max-width: 800px;
+
+        margin-top: 20px;
+
+        border-collapse: collapse;
+        table-layout: fixed;
+      }
+
+      .data-table thead {
+        background: rgba(42, 173, 39, 1);
+        color: #fff;
+      }
+
+      .data-table th {
+        border: 1px solid #000;
+        padding: 6px;
+
+        text-align: center;
+
+        font-size: 17px;
+        font-weight: bold;
+      }
+
+      .data-table td {
+        border: 1px solid #000;
+        padding: 6px;
+
+        text-align: center;
+
+        font-size: 16px;
+      }
+
+      /* ---------- Notes ---------- */
+
+      .note {
+        color: #4b5563;
+        text-align: center;
+        font-size: 16px;
+      }
+
+      /* ---------- Modal ---------- */
+
+      .modal {
+        display: none;
+
+        position: fixed;
+        inset: 0;
+
+        z-index: 10;
+
+        background: rgba(0, 0, 0, 0.4);
+
+        overflow-y: auto;
+
+        justify-content: center;
+        align-items: center;
+      }
+
+      #errorModal {
+        z-index: 20;
+      }
+
+      .modal-content {
+        width: 90%;
+        max-width: 480px;
+
+        margin: auto;
+
+        padding: 20px;
+
+        background: #fff;
+        border-radius: 10px;
+      }
+
+      .modal-content h2 {
+        margin-top: 0;
+        font-size: 24px;
+      }
+
+      .modal-content h3 {
+        margin-top: 0px;
+        margin-bottom: 0px;
+        font-size: 22px;
+      }
+
+      /* ---------- Map ---------- */
+
+      .snapshot-wrapper {
+        position: relative;
+
+        width: 100%;
+        max-width: 800px;
+        min-height: 480px;
+
+        aspect-ratio: 4 / 3;
+
+        overflow: hidden;
+      }
+
+      #map {
+        position: absolute;
+        inset: 0;
+
+        width: 100%;
+        height: 100%;
+
+        z-index: 9;
+      }
+
+      /* ---------- Marker Clusters ---------- */
+
+      .custom-cluster div {
+        width: 50px;
+        height: 50px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 50%;
+
+        color: #fff;
+
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .marker-cluster {
+        background-color: rgba(42, 173, 39, 0.75);
+      }
+
+      /* ---------- Mobile ---------- */
+
+      @media (max-width: 600px) {
+        body {
+          padding: 12px;
+        }
+
+        header img {
+          height: 36px;
+        }
+
+        header h1 {
+          font-size: 24px;
+        }
+
+        button {
+          margin: 12px 6px 12px 6px;
+        }
+
+        .snapshot-wrapper {
+          min-height: 320px;
+        }
+
+        .modal-content {
+          width: 95%;
+        }
+      }
+
+      /* ---------- Map Legend ---------- */
+
+      .map_dot_row {
+        display: flex;
+        align-items: center;
+
+        gap: 8px;
+
+        margin: 0;
+
+        font-size: 16px;
+      }
+
+      .map_dot {
+        width: 18px;
+        height: 18px;
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        flex-shrink: 0;
+
+        border: 2px solid #000;
+        border-radius: 50%;
+      }
+
+      .map_dot_inner {
+        width: 6px;
+        height: 6px;
+
+        background: #000;
+        border-radius: 50%;
+      }
+
+      /* ---------- Help ---------- */
+
+      .help-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 22px;
+        height: 22px;
+
+        margin-left: 8px;
+
+        border-radius: 50%;
+
+        background: #ffc73e;
+        color: #000;
+
+        font-size: 15px;
+        font-weight: bold;
+
+        cursor: pointer;
+
+        user-select: none;
+        -webkit-user-select: none;
+      }
+
+      .help-box {
+        margin-top: 6px;
+
+        padding: 8px 10px;
+
+        background: #f5f5f5;
+
+        border-radius: 6px;
+
+        font-size: 16px;
+        line-height: 1.5;
+      }
+
+      .help-box ul {
+        margin: 0;
+        padding-left: 22px;
+      }
+
+      .help-box li {
+        margin-bottom: 6px;
+      }
+
+      /* ---------- Utility ---------- */
+
+      .hidden {
+        display: none !important;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <header>
+        <a href="/community_hub">
+          <img src="./logo.png" alt="Logo" />
+        </a>
+        <h1>Meadows Community Info</h1>
+      </header>
+
+      <div class="status-bar">Auto refresh in <span id="countdown"></span></div>
+
+      <div style="text-align: center">
+        <button onclick="myLocation()">My Location</button>
+        <button onclick="openModal('meadowAddModal')">Add Data</button>
+      </div>
+      <div class="note">🔒 All interactions and data are anonymous.</div>
+      <div class="snapshot-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th colspan="1">Mowed Meadow Map</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <tr>
+              <th>
+                <div class="snapshot-wrapper">
+                  <div id="map"></div>
+                </div>
+              </th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="errorModal" class="modal">
+        <div class="modal-content">
+          <div style="display: flex; gap: 10px">
+            <h3 id="errorModalTitle">Oops... Something went wrong.</h3>
+          </div>
+          <p id="errorModalText">...</p>
+          <div style="text-align: center">
+            <button onclick="closeModal('errorModal')">Close</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="meadowInfoModal" class="modal">
+        <div class="modal-content">
+          <div style="display: flex; gap: 10px">
+            <h2>Mowed Meadow Info</h2>
+          </div>
+          <div>
+            <p><b>Time: </b> <span id="info_time"></span></p>
+            <p><b>Type: </b> <span id="info_type"></span></p>
+            <p><b>Area: </b> <span id="info_area"></span></p>
+          </div>
+          <div style="text-align: center">
+            <button onclick="closeModal('meadowInfoModal')">Close</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="meadowAddModal" class="modal">
+        <div class="modal-content">
+          <div style="display: flex; gap: 10px">
+            <h2>Mowed Meadow Data Point</h2>
+          </div>
+          <div>
+            <p class="map_dot_row">
+              <span class="map_dot"><span class="map_dot_inner"></span></span
+              >For selected location on map.
+            </p>
+            <form id="meadow_form" autocomplete="off">
+              <fieldset>
+                <label>
+                  Mowed meadow TYPE:
+                  <span id="type_helpToggle" class="help-icon">?</span>
+                </label>
+                <div id="type_helpBox" class="help-box hidden">
+                  <ul>
+                    <li>
+                      <b>Mostly grass:</b> Few flowers; meadow is dominated by
+                      grasses.
+                    </li>
+                    <li>
+                      <b>Mix of grass and flowers:</b> Similar proportions of
+                      grasses and flowering plants.
+                    </li>
+                    <li>
+                      <b>Many flowers:</b> Species-rich meadow with abundant
+                      flowering plants
+                    </li>
+                    <li>
+                      <b>Not sure:</b> Meadow composition is unknown or
+                      difficult to estimate.
+                    </li>
+                  </ul>
+                </div>
+                <select name="type" required>
+                  <option selected disabled value="">Select type</option>
+                  <option value="grass_dominant">Mostly grass</option>
+                  <option value="mixed">Mix of grass and flowers</option>
+                  <option value="flower_rich">Many flowers</option>
+                  <option value="unknown">Not sure</option>
+                </select>
+                <label>
+                  Estimated AREA:<span id="area_helpToggle" class="help-icon"
+                    >?</span
+                  >
+                </label>
+                <div id="area_helpBox" class="help-box hidden">
+                  <ul>
+                    <li><b>Tiny Area:</b> 1 m² (1×1 m) — similar to a small flower group, a few plants, or a small test spot.</li>
+                    <li><b>Mini Area:</b> 9 m² (3×3 m) — similar to a small garden bed or small patch.</li>
+                    <li><b>Small Area:</b> 49 m² (7×7 m) — similar to a large garden section or small meadow patch.</li>
+                    <li><b>Unit Area:</b> 1 a (100 m², 10×10 m) — similar to a small yard, orchard section, or standard observation plot.</li>
+                    <li><b>Medium Area:</b> 9 a (900 m², 30×30 m) — similar to a large garden, small field section, or meadow part.</li>
+                    <li><b>Large Area:</b> 49 a (4,900 m², 70×70 m) — similar to a large field block or several meadow sections.</li>
+                    <li><b>Huge Area:</b> 1 ha (10,000 m², 100×100 m) — similar to a small farm field or large meadow.</li>
+                  </ul>
+                </div>
+
+                <select name="area" required>
+                  <option selected disabled value="">Select area</option>
+                  <option value="tiny">Tiny - 1 m² (1×1 m)</option>
+                  <option value="mini">Mini - 9 m² (3×3 m)</option>
+                  <option value="small">Small - 49 m² (7×7 m)</option>
+                  <option value="unit">Unit - 1 a (100 m², 10×10 m)</option>
+                  <option value="medium">Medium - 9 a (900 m², 30×30 m)</option>
+                  <option value="large">Large - 49 a (4,900 m², 70×70 m)</option>
+                  <option value="huge">Huge - 1 ha (10,000 m², 100×100 m)</option>
+                </select>
+              </fieldset>
+            </form>
+          </div>
+          <div style="text-align: center">
+            <button onclick="addDataPoint()">Add</button>
+            <button onclick="closeModal('meadowAddModal')">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let refreshInterval = 10;
+      let counter = refreshInterval;
+      let toggle = false;
+
+      function myLocation() {
+        map.locate({ enableHighAccuracy: true });
+        map.on("locationfound", (e) => {
+          map.setView(e.latlng, 20);
+        });
+        map.once("locationerror", (e) => {
+          displayError({
+            title: "Location information refused",
+            text: "Unable to get your location. Please enable location permissions and try again or manually find your location on map.",
+          });
+        });
+      }
+
+      function getFormData(id) {
+        const form = document.getElementById(id);
+        const valid = form.checkValidity();
+
+        if (!valid) {
+          return {};
+        }
+
+        const formData = new FormData(form);
+        form.reset();
+
+        const data = {};
+        for (let [key, value] of formData.entries()) {
+          if (data[key]) {
+            data[key] = [].concat(data[key], value);
+          } else {
+            data[key] = value;
+          }
+        }
+        return data;
+      }
+
+      function resetFormData(id) {
+        const form = document.getElementById(id);
+        form.reset();
+      }
+
+      function isEmpty(obj) {
+        return Object.keys(obj).length === 0 && obj.constructor === Object;
+      }
+
+      function delay(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+      }
+
+      async function addDataPoint() {
+        const location = map.getCenter();
+        const dataPoint = getFormData("meadow_form");
+
+        if (isEmpty(dataPoint)) {
+          displayError({
+            title: "Incomplete Data Point form input.",
+            text: "Please fill in all required fields before adding the data point.",
+          });
+          return;
+        }
+
+        dataPoint["lat"] = location.lat;
+        dataPoint["lng"] = location.lng;
+
+        addMeadowData(dataPoint);
+
+        closeModal("meadowAddModal");
+        resetFormData("meadow_form");
+        await delay(300);
+        refreshData();
+      }
+
+      function addMeadowData(dataPoint) {
+        fetch("./addMeadowData", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            type: dataPoint["type"],
+            area: dataPoint["area"],
+            lat: dataPoint["lat"],
+            lng: dataPoint["lng"],
+          }),
+        })
+          .then(checkForError)
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.status === "ok") {
+              //console.log("Success:", data);
+            }
+          })
+          .catch((error) => {
+            //console.error("Error:", error.code, error.text || error);
+          });
+      }
+
+      function refreshData() {
+        fetch("./getMeadowData", {
+          method: "GET",
+        })
+          .then(checkForError)
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.status === "ok") {
+              //console.log("Success:", data);
+              const markersData = data.data.flatMap((day) => day.data);
+              updateMarkers(markersData);
+            }
+          })
+          .catch((error) => {
+            //console.error("Error:", error.code, error.text || error);
+          });
+      }
+
+      setInterval(() => {
+        counter--;
+
+        if (counter <= 0) {
+          refreshData();
+          counter = refreshInterval;
+        }
+        document.getElementById("countdown").innerHTML =
+          "<b>" + counter + "</b>" + " s";
+      }, 1000);
+
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) counter = refreshInterval;
+      });
+
+      function openModal(arg_modal) {
+        document.getElementById(arg_modal).style.display = "flex";
+      }
+
+      function closeModal(arg_modal) {
+        document.getElementById(arg_modal).style.display = "none";
+      }
+
+      async function checkForError(arg_res) {
+        if (!arg_res.ok) {
+          const text = await arg_res.text();
+          const err = new Error(`HTTP ${arg_res.status}`);
+          err.code = arg_res.status;
+          err.text = text;
+          throw err;
+        }
+        return arg_res;
+      }
+
+      function displayError(arg_error) {
+        document.getElementById("errorModalTitle").innerHTML = arg_error.title;
+        document.getElementById("errorModalText").innerHTML = arg_error.text;
+        openModal("errorModal");
+      }
+
+      function initHelp() {
+        document
+          .getElementById("type_helpToggle")
+          .addEventListener("click", () => {
+            document.getElementById("type_helpBox").classList.toggle("hidden");
+          });
+
+        document
+          .getElementById("area_helpToggle")
+          .addEventListener("click", () => {
+            document.getElementById("area_helpBox").classList.toggle("hidden");
+          });
+      }
+
+      window.onload = () => {
+        initHelp();
+        refreshData();
+      };
+
+      let map;
+      if (navigator.onLine) {
+        map = L.map("map", {
+          center: [46.05146131318159, 14.504419494165846], // Slovenia
+          zoom: 8,
+          maxZoom: 20,
+        });
+
+        const imagery = L.tileLayer(
+          "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+          {
+            maxZoom: 20,
+            attribution: "",
+          },
+        );
+
+        const labels = L.tileLayer(
+          "https://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}",
+          {
+            maxZoom: 20,
+            attribution: "",
+          },
+        );
+
+        const centerCircle = L.circleMarker(map.getCenter(), {
+          radius: 20,
+          color: "black",
+          fillColor: "black",
+          fillOpacity: 0.2,
+        });
+
+        const centerDot = L.circleMarker(map.getCenter(), {
+          radius: 3,
+          color: "black",
+          fillColor: "black",
+          fillOpacity: 1,
+        });
+
+        const mapScale = L.control
+          .scale({
+            position: "bottomleft", // or 'bottomright', 'topleft', 'topright'
+            metric: true,
+            imperial: false,
+            maxWidth: 100,
+          })
+          .addTo(map);
+
+        imagery.addTo(map);
+        labels.addTo(map);
+        centerCircle.addTo(map);
+        centerDot.addTo(map);
+        mapScale.addTo(map);
+
+        map.on("move", function () {
+          centerCircle.setLatLng(map.getCenter());
+          centerDot.setLatLng(map.getCenter());
+        });
+
+        // Markers
+        function createClusterIcon(cluster) {
+          return L.divIcon({
+            html: `
+                <div class="marker-cluster">
+                    ${cluster.getChildCount()}
+                </div>
+                `,
+            className: "custom-cluster",
+            iconSize: [100, 100],
+          });
+        }
+
+        const marker_cluster = L.markerClusterGroup({
+          iconCreateFunction: (cluster) => createClusterIcon(cluster),
+          maxClusterRadius: 60,
+          spiderfyOnMaxZoom: true,
+          showCoverageOnHover: false,
+          zoomToBoundsOnClick: true,
+        });
+
+        map.addLayer(marker_cluster);
+
+        const marker_icon = L.icon({
+          iconUrl:
+            "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png",
+          shadowUrl:
+            "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png",
+
+          iconSize: [25, 41],
+          iconAnchor: [12, 41],
+          popupAnchor: [1, -34],
+          shadowSize: [41, 41],
+        });
+
+        const markers = [];
+
+        function updateMarkers(data) {
+          while (markers.length < data.length) {
+            const marker = L.marker([0, 0], { icon: marker_icon });
+            markers.push(marker);
+            marker_cluster.addLayer(marker);
+          }
+          data.forEach((item, i) => {
+            const marker = markers[i];
+            marker.setLatLng([item.lat, item.lng]);
+            marker.off("click");
+            marker.on("click", () => {
+              updateMeadowInfo(item);
+              openModal("meadowInfoModal");
+            });
+          });
+          while (markers.length > data.length) {
+            const marker = markers.pop();
+            marker_cluster.removeLayer(marker);
+          }
+        }
+
+        function daysSince(epoch_ms) {
+          const now = Date.now();
+          return Math.floor((now - epoch_ms) / (1000 * 60 * 60 * 24));
+        }
+
+        const TYPE_LOOKUP = {
+          grass_dominant: {
+            label: "Mostly grass",
+            desc: "Few flowers; meadow is dominated by grasses.",
+          },
+          mixed: {
+            label: "Mix of grass and flowers",
+            desc: "Similar proportions of grasses and flowering plants.",
+          },
+          flower_rich: {
+            label: "Many flowers",
+            desc: "Species-rich meadow with abundant flowering plants.",
+          },
+          unknown: {
+            label: "Not sure",
+            desc: "Meadow composition is unknown or difficult to estimate.",
+          },
+        };
+
+        function getTypeInfo(key) {
+          return (
+            TYPE_LOOKUP[key] || {
+              label: key,
+              desc: "Unknown meadow type.",
+            }
+          );
+        }
+
+        function formatType(key) {
+          const info = getTypeInfo(key);
+          return `${info.label} – ${info.desc}`;
+        }
+
+        const AREA_LOOKUP = {
+          tiny: {
+            label: "Tiny",
+            desc: "Approximately 1 m² (1×1 m).",
+          },
+          mini: {
+            label: "Mini",
+            desc: "Approximately 9 m² (3×3 m).",
+          },
+          small: {
+            label: "Small",
+            desc: "Approximately 49 m² (7×7 m).",
+          },
+          unit: {
+            label: "Unit",
+            desc: "Approximately 1 a (100 m², 10×10 m).",
+          },
+          medium: {
+            label: "Medium",
+            desc: "Approximately 9 a (900 m², 30×30 m).",
+          },
+          large: {
+            label: "Large",
+            desc: "Approximately 49 a (4,900 m², 70×70 m).",
+          },
+          huge: {
+            label: "Huge",
+            desc: "Approximately 1 ha (10,000 m², 100×100 m).",
+          },
+        };
+
+        function getAreaInfo(areaKey) {
+          return (
+            AREA_LOOKUP[areaKey] || {
+              label: areaKey,
+              desc: "Unknown area",
+            }
+          );
+        }
+
+        function formatArea(areaKey) {
+          const a = getAreaInfo(areaKey);
+          return `${a.label} – ${a.desc}`;
+        }
+
+        function formatDaysSince(days) {
+          return `${days} ${days === 1 ? "day" : "days"} ago`;
+        }
+
+        function updateMeadowInfo(item) {
+          document.getElementById("info_time").innerText = formatDaysSince(
+            daysSince(item.epoch),
+          );
+          document.getElementById("info_type").innerText = formatType(
+            item.type,
+          );
+          document.getElementById("info_area").innerText = formatArea(
+            item.area,
+          );
+        }
+      }
+    </script>
+  </body>
+</html>

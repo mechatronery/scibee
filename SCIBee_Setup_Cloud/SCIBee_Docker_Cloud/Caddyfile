@@ -1,0 +1,76 @@
+# Caddyfile
+{
+    admin off
+}
+
+localhost {
+}
+
+:80 {
+    @about path /about
+    redir @about /about/ 308
+
+    @about path /presenter
+    redir @about /presenter/ 308
+
+    @about path /synchroniser
+    redir @about /synchroniser/ 308
+
+    @community path /community_hub
+    redir @community /community_hub/ 308
+
+    @community_blooming path /community_blooming
+    redir @community_blooming /community_blooming/ 308
+
+    @community_meadows path /community_meadows
+    redir @community_meadows /community_meadows/ 308
+
+    @community_varroa path /community_varroa
+    redir @community_varroa /community_varroa/ 308
+
+    @community_spraying path /community_spraying
+    redir @community_spraying /community_spraying/ 308
+
+
+    handle /about/* {
+        uri strip_prefix /about
+        reverse_proxy about:8900
+    }
+
+    handle /presenter/* {
+        uri strip_prefix /presenter
+        reverse_proxy presenter:8901
+    }
+
+    handle /synchroniser/* {
+        uri strip_prefix /synchroniser
+        reverse_proxy synchroniser:8902
+    }
+
+    handle /community_hub/* {
+        uri strip_prefix /community_hub
+        reverse_proxy community_hub:8100
+    }
+
+    handle /community_blooming/* {
+        uri strip_prefix /community_blooming
+        reverse_proxy community_blooming:8101
+    }
+
+    handle /community_meadows/* {
+        uri strip_prefix /community_meadows
+        reverse_proxy community_meadows:8102
+    }
+
+    handle /community_varroa/* {
+        uri strip_prefix /community_varroa
+        reverse_proxy community_varroa:8103
+    }
+
+    handle /community_spraying/* {
+        uri strip_prefix /community_spraying
+        reverse_proxy community_spraying:8104
+    }
+
+    respond "OK" 200
+}

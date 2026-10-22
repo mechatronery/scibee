@@ -1,0 +1,35 @@
+# Caddyfile
+{
+    admin off
+}
+
+localhost {
+}
+
+:80 {
+    @about path /about
+    redir @about /about/ 308
+
+    @about path /presenter
+    redir @about /presenter/ 308
+
+    @about path /synchroniser
+    redir @about /synchroniser/ 308
+
+    handle /about/* {
+        uri strip_prefix /about
+        reverse_proxy about:8900
+    }
+
+    handle /presenter/* {
+        uri strip_prefix /presenter
+        reverse_proxy presenter:8901
+    }
+
+    handle /synchroniser/* {
+        uri strip_prefix /synchroniser
+        reverse_proxy synchroniser:8902
+    }
+
+    respond "OK" 200
+}

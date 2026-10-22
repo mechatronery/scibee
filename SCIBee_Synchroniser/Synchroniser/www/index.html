@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SCIBee Synchroniser</title>
+
+    <style>
+        /* ---------- Global ---------- */
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 18px;
+            line-height: 1.5;
+
+            margin: 0;
+            padding: 16px;
+
+            background: #f5f5f5;
+            color: #000;
+        }
+
+        /* ---------- Header ---------- */
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        header img {
+            height: 50px;
+            margin-top: 6px;
+            margin-right: 12px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 30px;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+
+        /* ---------- Layout ---------- */
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .intro {
+            width: 100%;
+            max-width: 480px;
+
+            margin: 0 0 20px;
+
+            color: #4b5563;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .rows {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            width: 100%;
+            max-width: 320px;
+        }
+
+        /* ---------- Buttons ---------- */
+
+        button {
+            width: 180px;
+            min-height: 44px;
+
+            padding: 12px;
+            margin: 6px 12px;
+
+            font-family: inherit;
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 1.2;
+
+            border: none;
+            border-radius: 6px;
+
+            background: #ffc73e;
+            color: #000;
+
+            cursor: pointer;
+            flex-shrink: 0;
+
+            appearance: none;
+            -webkit-appearance: none;
+
+            transition: filter 0.15s ease;
+        }
+
+        button:hover:not(:disabled) {
+            filter: brightness(0.95);
+        }
+
+        button:active:not(:disabled) {
+            filter: brightness(0.9);
+        }
+
+        button:disabled {
+            background: #ddd;
+            color: #555;
+            cursor: wait;
+        }
+
+        button:focus-visible {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+        }
+
+        /* ---------- Forms ---------- */
+
+        label {
+            display: block;
+            margin: 12px 0 6px;
+
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        input:not([type="checkbox"]),
+        select,
+        textarea {
+            display: block;
+            width: 100%;
+
+            padding: 12px;
+            margin: 6px 0 14px;
+
+            font-family: inherit;
+            font-size: 18px;
+            line-height: 1.4;
+
+            color: #000;
+            background: #f5f5f5;
+
+            border: 1px solid #ddd;
+            border-radius: 6px;
+
+            outline: none;
+            box-shadow: none;
+
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+
+        input[type="file"] {
+            background: #f5f5f5;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            background: #fff;
+            border-color: #3b82f6;
+        }
+
+        input:focus-visible,
+        select:focus-visible {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+        }
+
+        /* ---------- Notes ---------- */
+
+        .hint {
+            margin: -4px 0 12px;
+
+            color: #4b5563;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        /* ---------- Modal ---------- */
+
+        .modal {
+            display: none;
+
+            position: fixed;
+            inset: 0;
+
+            z-index: 10;
+
+            padding: 16px;
+
+            background: rgba(0, 0, 0, 0.4);
+
+            overflow-y: auto;
+
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            width: 90%;
+            max-width: 480px;
+
+            max-height: calc(100vh - 32px);
+            overflow-y: auto;
+
+            margin: auto;
+            padding: 20px;
+
+            background: #fff;
+            border-radius: 10px;
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+            margin-bottom: 12px;
+
+            font-size: 24px;
+            line-height: 1.3;
+        }
+
+        .modal-content .description {
+            margin: 0 0 16px;
+
+            color: #4b5563;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .modal-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 4px;
+
+            margin-top: 12px;
+        }
+
+        .modal-actions button {
+            width: 140px;
+            margin: 6px;
+        }
+
+        /* ---------- Status ---------- */
+
+        .status {
+            display: none;
+
+            padding: 12px;
+            margin-top: 14px;
+
+            border-radius: 6px;
+            border: 1px solid #ddd;
+
+            background: #f5f5f5;
+
+            font-size: 16px;
+            line-height: 1.5;
+
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+        }
+
+        .status.visible {
+            display: block;
+        }
+
+        /* ---------- Mobile ---------- */
+
+        @media (max-width: 600px) {
+            body {
+                padding: 12px;
+            }
+
+            header img {
+                height: 36px;
+                margin-right: 8px;
+            }
+
+            header h1 {
+                font-size: 24px;
+            }
+
+            .intro {
+                font-size: 16px;
+            }
+
+            .modal {
+                padding: 10px;
+                align-items: center;
+            }
+
+            .modal-content {
+                width: 95%;
+                max-height: calc(100vh - 20px);
+                padding: 16px;
+            }
+
+            .modal-content h2 {
+                font-size: 22px;
+            }
+
+            .modal-actions {
+                gap: 0;
+            }
+
+            .modal-actions button {
+                width: 120px;
+            }
+        }
+
+        /* ---------- Utility ---------- */
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- ---------- Header ---------- -->
+
+        <header>
+            <a href="/" aria-label="Home">
+                <img src="logo.png" alt="Logo">
+            </a>
+
+            <h1>SCIBee Synchroniser</h1>
+        </header>
+
+        <p class="intro">
+            Manually move online observations to the beehives.
+
+        </p>
+
+        <!-- ---------- Main Buttons ---------- -->
+
+        <div class="rows">
+            <button
+                type="button"
+                onclick="openModal('downloadModal')"
+            >
+                Download
+            </button>
+
+            <button
+                type="button"
+                onclick="openModal('uploadModal')"
+            >
+                Upload
+            </button>
+        </div>
+
+    </div>
+
+    <!-- ---------- Download Modal ---------- -->
+
+    <div
+        id="downloadModal"
+        class="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="downloadTitle"
+        aria-hidden="true"
+    >
+        <div class="modal-content">
+
+            <h2 id="downloadTitle">Download observations</h2>
+
+            <p class="description">
+                Download online observations as a JSON file you can later upload.
+            </p>
+
+            <form id="downloadForm">
+
+                <label for="days">
+                    Retrieve observations for the last N days
+                </label>
+
+                <input
+                    type="number"
+                    id="days"
+                    name="days"
+                    min="1"
+                    step="1"
+                    value="7"
+                    required
+                >
+
+                <label for="beehiveName">
+                    Beehive group name
+                </label>
+
+                <select id="beehiveName" name="beehiveName">
+                    <option value="">All</option>
+                    <option value="A">A</option>
+                    <option value="C">C</option>
+                </select>
+
+                <p class="hint">
+                    Select a beehive group to filter observations, or choose "All" observations.
+                </p>
+
+                <div class="modal-actions">
+                    <button
+                        type="submit"
+                        id="downloadButton"
+                    >
+                        Download
+                    </button>
+
+                    <button
+                        type="button"
+                        onclick="closeModal('downloadModal')"
+                    >
+                        Close
+                    </button>
+                </div>
+
+            </form>
+
+            <div
+                id="downloadStatus"
+                class="status"
+                role="status"
+                aria-live="polite"
+            ></div>
+
+        </div>
+    </div>
+
+    <!-- ---------- Upload Modal ---------- -->
+
+    <div
+        id="uploadModal"
+        class="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="uploadTitle"
+        aria-hidden="true"
+    >
+        <div class="modal-content">
+
+            <h2 id="uploadTitle">Upload observations</h2>
+
+            <p class="description">
+                Select previously downloaded JSON file containing observations.
+            </p>
+
+            <form id="uploadForm">
+
+                <label for="uploadFile">
+                    Select JSON file
+                </label>
+
+                <input
+                    type="file"
+                    id="uploadFile"
+                    name="file"
+                    accept=".json,application/json"
+                    required
+                >
+
+                <div class="modal-actions">
+                    <button
+                        type="submit"
+                        id="uploadButton"
+                    >
+                        Upload
+                    </button>
+
+                    <button
+                        type="button"
+                        onclick="closeModal('uploadModal')"
+                    >
+                        Close
+                    </button>
+                </div>
+
+            </form>
+
+            <div
+                id="uploadStatus"
+                class="status"
+                role="status"
+                aria-live="polite"
+            ></div>
+
+        </div>
+    </div>
+
+    <script>
+        // ---------- Modal Handling ----------
+
+        let activeModal = null;
+        let previousFocus = null;
+
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+
+            previousFocus = document.activeElement;
+            activeModal = modal;
+
+            modal.style.display = "flex";
+            modal.setAttribute("aria-hidden", "false");
+
+            document.body.style.overflow = "hidden";
+
+            const firstInput = modal.querySelector(
+                "input, select, textarea, button"
+            );
+
+            if (firstInput) {
+                firstInput.focus();
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+
+            // Do not close a modal while its operation is running.
+            const busyButton = modal.querySelector(
+                'button[disabled]'
+            );
+
+            if (busyButton) {
+                return;
+            }
+
+            modal.style.display = "none";
+            modal.setAttribute("aria-hidden", "true");
+
+            if (activeModal === modal) {
+                activeModal = null;
+            }
+
+            document.body.style.overflow = "";
+
+            if (previousFocus && previousFocus.isConnected) {
+                previousFocus.focus();
+            }
+        }
+
+        // Close a modal by clicking its backdrop.
+        document.querySelectorAll(".modal").forEach((modal) => {
+            modal.addEventListener("click", (event) => {
+                if (event.target === modal) {
+                    closeModal(modal.id);
+                }
+            });
+        });
+
+        // Close the active modal using Escape.
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && activeModal) {
+                closeModal(activeModal.id);
+            }
+        });
+
+        // ---------- Status Messages ----------
+
+        function showStatus(elementId, message) {
+            const element = document.getElementById(elementId);
+
+            element.textContent = message;
+            element.classList.add("visible");
+        }
+
+        function clearStatus(elementId) {
+            const element = document.getElementById(elementId);
+
+            element.textContent = "";
+            element.classList.remove("visible");
+        }
+
+        // ---------- Download Filename ----------
+
+        function getDownloadFilename(response) {
+            const disposition =
+                response.headers.get("Content-Disposition") || "";
+
+            // Supports filename="example.json".
+            const match = disposition.match(
+                /filename\s*=\s*"([^"]+)"/i
+            );
+
+            if (match) {
+                return match[1];
+            }
+
+            // Fallback if the response has no filename header.
+            return "scibee_OBS_sync.json";
+        }
+
+        // ---------- DOWNLOAD OBSERVATIONS ----------
+
+        document.getElementById("downloadForm").addEventListener(
+            "submit",
+            async (event) => {
+                event.preventDefault();
+                await downloadObservations();
+            }
+        );
+
+        async function downloadObservations() {
+            const button =
+                document.getElementById("downloadButton");
+
+            const daysInput =
+                document.getElementById("days");
+
+            const beehiveName =
+                document.getElementById("beehiveName").value.trim();
+
+            const days = Number(daysInput.value);
+
+            clearStatus("downloadStatus");
+
+            if (!Number.isInteger(days) || days < 1) {
+                showStatus(
+                    "downloadStatus",
+                    "Please enter a valid number of days (at least 1)."
+                );
+
+                daysInput.focus();
+                return;
+            }
+
+            const params = new URLSearchParams({
+                days: String(days),
+                beehive_name: beehiveName
+            });
+
+            button.disabled = true;
+
+            showStatus(
+                "downloadStatus",
+                "Preparing your observations download..."
+            );
+
+            let objectUrl = null;
+
+            try {
+                const response = await fetch(
+                    `/download?${params.toString()}`
+                );
+
+                if (!response.ok) {
+                    let message =
+                        `Download failed (HTTP ${response.status}).`;
+
+                    try {
+                        const errorData = await response.json();
+
+                        if (errorData.error) {
+                            message = errorData.error;
+                        }
+                    } catch {
+                        // Keep the default error message.
+                    }
+
+                    throw new Error(message);
+                }
+
+                const filename = getDownloadFilename(response);
+                const blob = await response.blob();
+
+                objectUrl = URL.createObjectURL(blob);
+
+                const link = document.createElement("a");
+
+                link.href = objectUrl;
+                link.download = filename;
+
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
+
+                showStatus(
+                    "downloadStatus",
+                    `Download started: ${filename}`
+                );
+
+            } catch (error) {
+                showStatus(
+                    "downloadStatus",
+                    `Download error: ${error.message}`
+                );
+
+            } finally {
+                if (objectUrl) {
+                    setTimeout(
+                        () => URL.revokeObjectURL(objectUrl),
+                        1000
+                    );
+                }
+
+                button.disabled = false;
+            }
+        }
+
+        // ---------- UPLOAD OBSERVATIONS ----------
+
+        document.getElementById("uploadForm").addEventListener(
+            "submit",
+            async (event) => {
+                event.preventDefault();
+                await uploadObservations();
+            }
+        );
+
+        async function uploadObservations() {
+            const button =
+                document.getElementById("uploadButton");
+
+            const fileInput =
+                document.getElementById("uploadFile");
+
+            const file = fileInput.files[0];
+
+            clearStatus("uploadStatus");
+
+            if (!file) {
+                showStatus(
+                    "uploadStatus",
+                    "Please select a JSON file first."
+                );
+
+                fileInput.focus();
+                return;
+            }
+
+            button.disabled = true;
+
+            try {
+                showStatus(
+                    "uploadStatus",
+                    "Validating JSON file..."
+                );
+
+                const fileText = await file.text();
+                const observations = JSON.parse(fileText);
+
+                if (!Array.isArray(observations)) {
+                    throw new Error(
+                        "The JSON file must contain an array of observations."
+                    );
+                }
+
+                if (observations.length === 0) {
+                    throw new Error(
+                        "The JSON file contains no observations."
+                    );
+                }
+
+                const formData = new FormData();
+                formData.append("file", file);
+
+                showStatus(
+                    "uploadStatus",
+                    `Uploading ${observations.length} observations...`
+                );
+
+                const response = await fetch("/upload", {
+                    method: "POST",
+                    body: formData
+                });
+
+                const result = await response.json().catch(() => ({}));
+
+                if (!response.ok) {
+                    throw new Error(
+                        result.error ||
+                        `Upload failed (HTTP ${response.status}).`
+                    );
+                }
+
+                showStatus(
+                    "uploadStatus",
+                    "Upload completed successfully.\n" +
+                    `Observations submitted: ${observations.length}\n` +
+                    `Records reported by server: ${
+                        result.count ?? "Not provided"
+                    }`
+                );
+
+                fileInput.value = "";
+
+            } catch (error) {
+                showStatus(
+                    "uploadStatus",
+                    `Upload error: ${error.message}`
+                );
+
+            } finally {
+                button.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>

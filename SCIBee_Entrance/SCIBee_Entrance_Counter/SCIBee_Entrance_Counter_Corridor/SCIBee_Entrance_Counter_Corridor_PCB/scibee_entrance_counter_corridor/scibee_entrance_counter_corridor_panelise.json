@@ -1,0 +1,24 @@
+{
+    "layout": {
+        "hspace": "3mm",
+        "vspace": "3mm",
+        "rows": "6",
+        "cols": "2"
+    },
+    "tabs": {
+        "type": "annotation"
+    },
+    "cuts": {
+        "type": "mousebites",
+        "offset": "0.1mm"
+    },
+    "framing": {
+        "type": "frame"
+    },
+    "fiducials": {
+        "type": "4fid",
+        "hoffset": "3mm",
+        "voffset": "3mm",
+        "opening": "2mm"
+    }
+}
