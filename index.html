@@ -1,0 +1,693 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#103c30">
+
+  <title>SCIBee | Smart Community Integrated Beehive</title>
+  <meta name="description" content="SCIBee connects beekeepers, researchers and technology providers through adaptable mechatronic systems for beehive information gathering and interpretation.">
+
+  <style>
+    :root {
+      --forest: #103c30;
+      --forest-light: #1d5945;
+      --sage: #e8efe3;
+      --sage-dark: #cfe0c5;
+      --cream: #faf9f0;
+      --gold: #f5c94f;
+      --ink: #183b31;
+      --muted: #60756b;
+      --white: #fff;
+      --radius: 20px;
+      --width: 1160px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--cream);
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      line-height: 1.7;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a { color: inherit; }
+
+    .container {
+      width: min(var(--width), calc(100% - 48px));
+      margin-inline: auto;
+    }
+
+    .section {
+      padding: 76px 0;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--forest-light);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1, h2, h3 {
+      line-height: 1.15;
+      letter-spacing: -.035em;
+    }
+
+    h1 {
+      max-width: 800px;
+      margin-bottom: 22px;
+      font-size: clamp(2.5rem, 6vw, 4.8rem);
+    }
+
+    h2 {
+      margin-bottom: 18px;
+      font-size: clamp(2rem, 4vw, 3rem);
+    }
+
+    h3 {
+      font-size: 1.2rem;
+    }
+
+    .lead {
+      max-width: 610px;
+      font-size: 1.08rem;
+    }
+
+    .muted { color: var(--muted); }
+
+    .hero {
+      position: relative;
+      isolation: isolate;
+      display: flex;
+      min-height: 610px;
+      align-items: center;
+      overflow: hidden;
+      color: var(--white);
+      background: var(--forest);
+    }
+
+    .hero::before {
+      position: absolute;
+      z-index: -2;
+      inset: 0;
+      content: "";
+      background:
+        linear-gradient(
+          90deg,
+          rgba(7, 37, 27, .96) 0%,
+          rgba(7, 37, 27, .82) 42%,
+          rgba(7, 37, 27, .16) 100%
+        ),
+        url("assets/hero-bee.jpg") center 48% / cover no-repeat;
+    }
+
+    .hero::after {
+      position: absolute;
+      z-index: -1;
+      right: -80px;
+      bottom: -115px;
+      width: 320px;
+      height: 240px;
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 50%;
+      content: "";
+      transform: rotate(-25deg);
+    }
+
+    .hero-content {
+      padding-block: 54px 92px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 13px;
+      margin-bottom: 68px;
+      text-decoration: none;
+    }
+
+    .brand img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+    }
+
+    .brand-name {
+      display: block;
+      font-size: 2.2rem;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .brand-subtitle {
+      display: block;
+      margin-top: 7px;
+      font-size: 1.05rem;
+      opacity: .95;
+    }
+
+    .hero .eyebrow { color: var(--gold); }
+
+    .hero h1 span { color: #cbe4b9; }
+
+    .hero .lead {
+      margin-bottom: 28px;
+      color: rgba(255,255,255,.9);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 12px 22px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      font: inherit;
+      font-size: .93rem;
+      font-weight: 750;
+      text-decoration: none;
+      transition: transform .2s, background .2s;
+    }
+
+    .button:hover { transform: translateY(-2px); }
+
+    .button-gold {
+      color: #203326;
+      background: var(--gold);
+    }
+
+    .button-outline {
+      color: var(--white);
+      border-color: rgba(255,255,255,.65);
+      background: transparent;
+    }
+
+    .button-dark {
+      color: var(--white);
+      background: var(--forest);
+    }
+
+    /* GENERAL SECTION LAYOUT */
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: clamp(32px, 6vw, 76px);
+    }
+
+    .section-image {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      height: auto;
+      min-height: 0;
+      max-height: none;
+      border-radius: var(--radius);
+      object-fit: cover;
+      background: var(--sage-dark);
+    }
+
+    .section-image.tall {
+      min-height: 0;
+    }
+
+    .mission-copy { max-width: 540px; }
+
+    .feature-list {
+      display: grid;
+      gap: 12px;
+      margin: 24px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .check {
+      color: var(--forest-light);
+      font-weight: 900;
+    }
+
+    .field {
+      background: var(--sage);
+    }
+
+    .section-tag {
+      display: inline-block;
+      margin-bottom: 12px;
+      color: var(--forest-light);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    /* COMMUNITY */
+    .community-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 36px;
+    }
+
+    .community-card {
+      padding: 28px 24px;
+      border: 1px solid rgba(16,60,48,.08);
+      border-radius: var(--radius);
+      background: var(--white);
+    }
+
+    .card-icon {
+      display: grid;
+      width: 52px;
+      height: 52px;
+      margin-bottom: 20px;
+      place-items: center;
+      border-radius: 16px;
+      color: var(--forest);
+      background: var(--sage);
+      font-size: 1.6rem;
+    }
+
+    .community-card p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    /* NEXT STEPS */
+    .next-steps {
+      background:
+        radial-gradient(ellipse at 100% 0%, #dce9d4 0, transparent 44%),
+        var(--sage);
+    }
+
+    .steps-panel {
+      padding: clamp(28px, 5vw, 56px);
+      border: 1px solid rgba(16,60,48,.08);
+      border-radius: 28px;
+      background: rgba(255,255,255,.76);
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 44px 0;
+      color: var(--white);
+      background: var(--forest);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .footer-brand img {
+      width: 54px;
+      height: 54px;
+      object-fit: contain;
+    }
+
+    .footer-brand strong {
+      display: block;
+      font-size: 1.4rem;
+    }
+
+    .footer-brand small { opacity: .8; }
+
+    .footer-note {
+      max-width: 300px;
+      margin: 0;
+      color: rgba(255,255,255,.8);
+      font-size: .92rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .footer-links .button-outline {
+      border-color: rgba(255,255,255,.4);
+    }
+
+    .copyright {
+      margin: 32px 0 0;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,.15);
+      color: rgba(255,255,255,.65);
+      font-size: .8rem;
+    }
+
+    @media (max-width: 760px) {
+        .container {
+            width: min(100% - 36px, var(--width));
+        }
+
+        .section {
+            padding: 54px 0;
+        }
+
+        .hero {
+            min-height: 600px;
+        }
+
+        .hero::before {
+            background:
+            linear-gradient(
+                90deg,
+                rgba(7, 37, 27, .92),
+                rgba(7, 37, 27, .63)
+            ),
+            url("assets/hero-bee.jpg") right center / cover no-repeat;
+        }
+
+        .brand {
+            margin-bottom: 66px;
+        }
+
+        .brand img {
+            width: 64px;
+            height: 64px;
+        }
+
+        .split {
+            grid-template-columns: 1fr;
+            gap: 28px;
+        }
+
+        .section-image {
+            display: block;
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            height: auto;
+            min-height: 0;
+            max-height: none;
+            object-fit: cover;
+        }
+
+        .section-image.tall {
+            min-height: 0;
+        }
+
+        /* Show complete device photos without cropping */
+        .section-image.device-image {
+            object-fit: contain;
+            background: var(--sage);
+        }
+
+        .field .field-image {
+            order: 2;
+        }
+
+        .community-grid {
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .community-card {
+            display: grid;
+            grid-template-columns: 52px 1fr;
+            column-gap: 16px;
+            padding: 22px;
+        }
+
+        .card-icon {
+            grid-row: span 2;
+            margin: 0;
+        }
+
+        .community-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .footer-inner {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+            transition-duration: .01ms !important;
+        }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container hero-content">
+      <div class="brand">
+        <img src="assets/scibee-logo.png" alt="SCIBee logo">
+        <span>
+          <span class="brand-name">SCIBee</span>
+          <span class="brand-subtitle">
+            Smart Community Integrated Beehive
+          </span>
+        </span>
+      </div>
+
+      <div id="home">
+        <p class="eyebrow">Observe · Understand · Collaborate</p>
+        <h1>
+          Better insight into the beehive.
+          <span>Stronger connections around it.</span>
+        </h1>
+
+        <p class="lead">
+          SCIBee brings beekeepers, researchers and technology providers
+          together through adaptable mechatronic systems for gathering
+          and interpreting beehive information.
+        </p>
+
+        <div class="actions">
+          <a class="button button-gold" href="#mission">
+            Discover SCIBee <span aria-hidden="true">→</span>
+          </a>
+          <a class="button button-outline" href="#field">
+            Our field work
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- MISSION -->
+    <section class="section" id="mission">
+      <div class="container split">
+        <div class="mission-copy">
+          <p class="eyebrow">Our mission</p>
+          <h2>Mechatronic support for smarter beekeeping.</h2>
+          <p>
+            We develop mechatronic support systems for automated
+            beehive information gathering and interpretation.
+          </p>
+          <p>
+            Our goal is to connect practical beekeeping experience,
+            scientific research and technological expertise through
+            modular solutions that can be adapted to specific needs.
+          </p>
+
+          <ul class="feature-list">
+            <li><span class="check">✓</span> Gather useful information from beehives</li>
+            <li><span class="check">✓</span> Support interpretation of collected information</li>
+            <li><span class="check">✓</span> Develop adaptable, modular systems</li>
+          </ul>
+        </div>
+
+        <img
+          class="section-image tall"
+          src="assets/beekeeper.jpg"
+          alt="Illustrative photograph of a beekeeper inspecting a hive"
+          loading="lazy"
+        >
+      </div>
+    </section>
+
+    <!-- FIELD DEPLOYMENT -->
+    <section class="section field" id="field">
+      <div class="container split">
+        <img
+          class="section-image field-image"
+          src="assets/field-apiary.jpg"
+          alt="Illustrative apiary in a green landscape"
+          loading="lazy"
+        >
+
+        <div>
+          <p class="eyebrow">In the field</p>
+          <h2>From development to real-world testing.</h2>
+          <p>
+            SCIBee is in the pilot and testing stage. Field work helps
+            us explore practical use, evaluate system behaviour and
+            identify improvements for future development.
+          </p>
+          <p>
+            We never stop improving—design, test, deploy at scale, analyse, and repeat, turning every lesson learned into the next step forward.
+          </p>
+          <a class="button button-dark" href="#next-steps">
+            Follow our progress <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMUNITY -->
+    <section class="section" id="community">
+      <div class="container">
+        <p class="eyebrow">A connected community</p>
+        <h2>Different expertise. A shared purpose.</h2>
+        <p class="lead muted">
+          Progress grows when people who understand bees, explore data and develop technology come together. Everyone has something to contribute to a future where honeybees can thrive, flowers continue to bloom, and the sweetness of life is passed on to generations to come.
+        </p>
+
+        <div class="community-grid">
+          <article class="community-card">
+            <div class="card-icon" aria-hidden="true">⌂</div>
+            <h3>Beekeepers</h3>
+            <p>
+              Practical experience, local knowledge and an
+              understanding of real apiary needs.
+            </p>
+          </article>
+
+          <article class="community-card">
+            <div class="card-icon" aria-hidden="true">⌘</div>
+            <h3>Researchers</h3>
+            <p>
+              Scientific perspectives, analysis and new insights
+              into beehive information.
+            </p>
+          </article>
+
+          <article class="community-card">
+            <div class="card-icon" aria-hidden="true">⚙</div>
+            <h3>Technology providers</h3>
+            <p>
+              Engineering expertise, modular tools and technical
+              collaboration.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEXT STEPS -->
+    <section class="section next-steps" id="next-steps">
+      <div class="container split">
+        <div>
+          <p class="eyebrow">Next steps</p>
+          <h2>Building on what we learn.</h2>
+          <p>
+            Our current focus is to develop and refine the system
+            through testing, feedback and collaboration.
+          </p>
+
+          <ul class="feature-list">
+            <li><span class="check">✓</span> Evaluate pilot results and usability</li>
+            <li><span class="check">✓</span> Refine modular system designs</li>
+            <li><span class="check">✓</span> Strengthen collaboration between disciplines</li>
+            <li><span class="check">✓</span> Prepare for future deployment</li>
+          </ul>
+        </div>
+
+        <img
+          class="section-image"
+          src="assets/entrance.jpg"
+          alt="Illustrative close-up of bees"
+          loading="lazy"
+        >
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <img src="assets/scibee-logo.png" alt="">
+          <div>
+            <strong>SCIBee</strong>
+            <small>Smart Community Integrated Beehive</small>
+          </div>
+        </div>
+
+        <p class="footer-note">
+          Connecting beekeeping, research and technology
+          for a better understanding of the hive.
+        </p>
+
+        <div class="footer-links">
+          <a
+            class="button button-gold"
+            href="https://github.com/mechatronery/scibee"
+          >
+            View on GitHub ↗
+          </a>
+          <!-- TODO
+          <a class="button button-outline" href="mailto:YOUR-EMAIL@example.com">
+            Contact us
+          </a> -->
+        </div>
+      </div>
+
+      <p class="copyright">
+        © <span id="year">2026</span> SCIBee · Smart Community Integrated Beehive
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+</body>
+</html>
